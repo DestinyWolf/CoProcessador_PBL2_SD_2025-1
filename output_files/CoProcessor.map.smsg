@@ -1,0 +1,2 @@
+Warning (10268): Verilog HDL information at mac8bc2.v(38): always construct contains both blocking and non-blocking assignments File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mac8bc2.v Line: 38
+Info (10281): Verilog HDL Declaration information at ula.v(7): object "Overflow" differs only in case from object "overflow" in the same scope File: /home/professor/Documentos/TEC499_SD/CopMatri/ula.v Line: 7

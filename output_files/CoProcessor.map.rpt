@@ -1,0 +1,1167 @@
+Analysis & Synthesis report for CoProcessor
+Thu May 15 11:59:36 2025
+Quartus Prime Version 23.1std.0 Build 991 11/28/2023 SC Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. Analysis & Synthesis DSP Block Usage Summary
+  9. User-Specified and Inferred Latches
+ 10. Registers Removed During Synthesis
+ 11. General Register Statistics
+ 12. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 13. Parameter Settings for User Entity Instance: Top-level Entity: |coprocessador
+ 14. Port Connectivity Checks: "ula:ULA|AddOrSub:subb"
+ 15. Port Connectivity Checks: "ula:ULA|AddOrSub:adder"
+ 16. Port Connectivity Checks: "registerBank25:matA|demux3b:col4"
+ 17. Port Connectivity Checks: "registerBank25:matA|demux3b:col3"
+ 18. Port Connectivity Checks: "registerBank25:matA|demux3b:col2"
+ 19. Port Connectivity Checks: "registerBank25:matA|demux3b:col1"
+ 20. Port Connectivity Checks: "registerBank25:matA|demux3b:col0"
+ 21. Port Connectivity Checks: "registerBank25:matA|demux3b:row"
+ 22. Post-Synthesis Netlist Statistics for Top Partition
+ 23. Elapsed Time Per Partition
+ 24. Analysis & Synthesis Messages
+ 25. Analysis & Synthesis Suppressed Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2023  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details, at
+https://fpgasoftware.intel.com/eula.
+
+
+
++----------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                     ;
++---------------------------------+------------------------------------------------+
+; Analysis & Synthesis Status     ; Successful - Thu May 15 11:59:36 2025          ;
+; Quartus Prime Version           ; 23.1std.0 Build 991 11/28/2023 SC Lite Edition ;
+; Revision Name                   ; CoProcessor                                    ;
+; Top-level Entity Name           ; coprocessador                                  ;
+; Family                          ; Cyclone V                                      ;
+; Logic utilization (in ALMs)     ; N/A                                            ;
+; Total registers                 ; 1225                                           ;
+; Total pins                      ; 31                                             ;
+; Total virtual pins              ; 0                                              ;
+; Total block memory bits         ; 0                                              ;
+; Total DSP Blocks                ; 8                                              ;
+; Total HSSI RX PCSs              ; 0                                              ;
+; Total HSSI PMA RX Deserializers ; 0                                              ;
+; Total HSSI TX PCSs              ; 0                                              ;
+; Total HSSI PMA TX Serializers   ; 0                                              ;
+; Total PLLs                      ; 0                                              ;
+; Total DLLs                      ; 0                                              ;
++---------------------------------+------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                             ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                          ; Setting            ; Default Value      ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                          ; 5CSEMA5F31C6       ;                    ;
+; Top-level entity name                                                           ; coprocessador      ; CoProcessor        ;
+; Family name                                                                     ; Cyclone V          ; Cyclone V          ;
+; Use smart compilation                                                           ; Off                ; Off                ;
+; Enable parallel Assembler and Timing Analyzer during compilation                ; On                 ; On                 ;
+; Enable compact report table                                                     ; Off                ; Off                ;
+; Restructure Multiplexers                                                        ; Auto               ; Auto               ;
+; MLAB Add Timing Constraints For Mixed-Port Feed-Through Mode Setting Don't Care ; Off                ; Off                ;
+; Create Debugging Nodes for IP Cores                                             ; Off                ; Off                ;
+; Preserve fewer node names                                                       ; On                 ; On                 ;
+; Intel FPGA IP Evaluation Mode                                                   ; Enable             ; Enable             ;
+; Verilog Version                                                                 ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                                    ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                        ; Auto               ; Auto               ;
+; Safe State Machine                                                              ; Off                ; Off                ;
+; Extract Verilog State Machines                                                  ; On                 ; On                 ;
+; Extract VHDL State Machines                                                     ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                               ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                      ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                                  ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                         ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                       ; On                 ; On                 ;
+; Parallel Synthesis                                                              ; On                 ; On                 ;
+; DSP Block Balancing                                                             ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                              ; On                 ; On                 ;
+; Power-Up Don't Care                                                             ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                                    ; Off                ; Off                ;
+; Remove Duplicate Registers                                                      ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                            ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                          ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                           ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                       ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                            ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                             ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                                  ; Off                ; Off                ;
+; Optimization Technique                                                          ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                              ; 70                 ; 70                 ;
+; Auto Carry Chains                                                               ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                            ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                           ; Off                ; Off                ;
+; Auto ROM Replacement                                                            ; On                 ; On                 ;
+; Auto RAM Replacement                                                            ; On                 ; On                 ;
+; Auto DSP Block Replacement                                                      ; On                 ; On                 ;
+; Auto Shift Register Replacement                                                 ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                                 ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                                   ; On                 ; On                 ;
+; Strict RAM Replacement                                                          ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                               ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                           ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                              ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                              ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                                   ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                             ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                               ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                         ; On                 ; On                 ;
+; Report Parameter Settings                                                       ; On                 ; On                 ;
+; Report Source Assignments                                                       ; On                 ; On                 ;
+; Report Connectivity Checks                                                      ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                              ; Off                ; Off                ;
+; Synchronization Register Chain Length                                           ; 3                  ; 3                  ;
+; Power Optimization During Synthesis                                             ; Normal compilation ; Normal compilation ;
+; HDL message level                                                               ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                                 ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                        ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                              ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                       ; 100                ; 100                ;
+; Clock MUX Protection                                                            ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                     ; Off                ; Off                ;
+; Block Design Naming                                                             ; Auto               ; Auto               ;
+; SDC constraint protection                                                       ; Off                ; Off                ;
+; Synthesis Effort                                                                ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal                    ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                            ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                                              ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                     ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                          ; On                 ; On                 ;
+; Automatic Parallel Synthesis                                                    ; On                 ; On                 ;
+; Partial Reconfiguration Bitstream ID                                            ; Off                ; Off                ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 20          ;
+; Maximum allowed            ; 14          ;
+;                            ;             ;
+; Average used               ; 1.38        ;
+; Maximum used               ; 14          ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processor 2            ;  12.0%      ;
+;     Processor 3            ;  11.9%      ;
+;     Processor 4            ;  11.7%      ;
+;     Processor 5            ;   0.3%      ;
+;     Processor 6            ;   0.3%      ;
+;     Processor 7            ;   0.3%      ;
+;     Processor 8            ;   0.3%      ;
+;     Processor 9            ;   0.2%      ;
+;     Processors 10-14       ;   0.2%      ;
++----------------------------+-------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                            ;
++----------------------------------+-----------------+------------------------+---------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path                                              ; Library ;
++----------------------------------+-----------------+------------------------+---------------------------------------------------------------------------+---------+
+; auxModules/sum8bc2.v             ; yes             ; User Verilog HDL File  ; /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/sum8bc2.v        ;         ;
+; auxModules/regOut.v              ; yes             ; User Verilog HDL File  ; /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/regOut.v         ;         ;
+; auxModules/registerBank25.v      ; yes             ; User Verilog HDL File  ; /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/registerBank25.v ;         ;
+; auxModules/reg8b.v               ; yes             ; User Verilog HDL File  ; /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/reg8b.v          ;         ;
+; auxModules/negate8bc2.v          ; yes             ; User Verilog HDL File  ; /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/negate8bc2.v     ;         ;
+; auxModules/mux3b.v               ; yes             ; User Verilog HDL File  ; /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mux3b.v          ;         ;
+; auxModules/mul8bc2.v             ; yes             ; User Verilog HDL File  ; /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mul8bc2.v        ;         ;
+; auxModules/mac8bc2.v             ; yes             ; User Verilog HDL File  ; /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mac8bc2.v        ;         ;
+; auxModules/demux3b.v             ; yes             ; User Verilog HDL File  ; /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/demux3b.v        ;         ;
+; auxModules/demux1b.v             ; yes             ; User Verilog HDL File  ; /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/demux1b.v        ;         ;
+; ula.v                            ; yes             ; User Verilog HDL File  ; /home/professor/Documentos/TEC499_SD/CopMatri/ula.v                       ;         ;
+; sumMatrix.v                      ; yes             ; User Verilog HDL File  ; /home/professor/Documentos/TEC499_SD/CopMatri/sumMatrix.v                 ;         ;
+; negateMatrix.v                   ; yes             ; User Verilog HDL File  ; /home/professor/Documentos/TEC499_SD/CopMatri/negateMatrix.v              ;         ;
+; mulMatrix.v                      ; yes             ; User Verilog HDL File  ; /home/professor/Documentos/TEC499_SD/CopMatri/mulMatrix.v                 ;         ;
+; mulEscMatrix.v                   ; yes             ; User Verilog HDL File  ; /home/professor/Documentos/TEC499_SD/CopMatri/mulEscMatrix.v              ;         ;
+; coprocessador.v                  ; yes             ; User Verilog HDL File  ; /home/professor/Documentos/TEC499_SD/CopMatri/coprocessador.v             ;         ;
+; AddOrSub.v                       ; yes             ; User Verilog HDL File  ; /home/professor/Documentos/TEC499_SD/CopMatri/AddOrSub.v                  ;         ;
++----------------------------------+-----------------+------------------------+---------------------------------------------------------------------------+---------+
+
+
++---------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary             ;
++---------------------------------------------+-----------+
+; Resource                                    ; Usage     ;
++---------------------------------------------+-----------+
+; Estimate of Logic utilization (ALMs needed) ; 10174     ;
+;                                             ;           ;
+; Combinational ALUT usage for logic          ; 18340     ;
+;     -- 7 input functions                    ; 0         ;
+;     -- 6 input functions                    ; 1949      ;
+;     -- 5 input functions                    ; 2973      ;
+;     -- 4 input functions                    ; 6233      ;
+;     -- <=3 input functions                  ; 7185      ;
+;                                             ;           ;
+; Dedicated logic registers                   ; 1225      ;
+;                                             ;           ;
+; I/O pins                                    ; 31        ;
+;                                             ;           ;
+; Total DSP Blocks                            ; 8         ;
+;                                             ;           ;
+; Maximum fan-out node                        ; clk~input ;
+; Maximum fan-out                             ; 827       ;
+; Total fan-out                               ; 82399     ;
+; Average fan-out                             ; 4.20      ;
++---------------------------------------------+-----------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                         ;
++----------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-------------------------------------------------------------------------------------------+----------------+--------------+
+; Compilation Hierarchy Node             ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                       ; Entity Name    ; Library Name ;
++----------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-------------------------------------------------------------------------------------------+----------------+--------------+
+; |coprocessador                         ; 18340 (35)          ; 1225 (20)                 ; 0                 ; 8          ; 31   ; 0            ; |coprocessador                                                                            ; coprocessador  ; work         ;
+;    |regOut:matC|                       ; 148 (0)             ; 200 (0)                   ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|regOut:matC                                                                ; regOut         ; work         ;
+;       |mux3b:col0|                     ; 25 (25)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|regOut:matC|mux3b:col0                                                     ; mux3b          ; work         ;
+;       |mux3b:col1|                     ; 24 (24)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|regOut:matC|mux3b:col1                                                     ; mux3b          ; work         ;
+;       |mux3b:col2|                     ; 24 (24)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|regOut:matC|mux3b:col2                                                     ; mux3b          ; work         ;
+;       |mux3b:col3|                     ; 24 (24)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|regOut:matC|mux3b:col3                                                     ; mux3b          ; work         ;
+;       |mux3b:col4|                     ; 25 (25)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|regOut:matC|mux3b:col4                                                     ; mux3b          ; work         ;
+;       |mux3b:row|                      ; 26 (26)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|regOut:matC|mux3b:row                                                      ; mux3b          ; work         ;
+;       |reg8b:registers[0].register|    ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|regOut:matC|reg8b:registers[0].register                                    ; reg8b          ; work         ;
+;       |reg8b:registers[10].register|   ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|regOut:matC|reg8b:registers[10].register                                   ; reg8b          ; work         ;
+;       |reg8b:registers[11].register|   ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|regOut:matC|reg8b:registers[11].register                                   ; reg8b          ; work         ;
+;       |reg8b:registers[12].register|   ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|regOut:matC|reg8b:registers[12].register                                   ; reg8b          ; work         ;
+;       |reg8b:registers[13].register|   ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|regOut:matC|reg8b:registers[13].register                                   ; reg8b          ; work         ;
+;       |reg8b:registers[14].register|   ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|regOut:matC|reg8b:registers[14].register                                   ; reg8b          ; work         ;
+;       |reg8b:registers[15].register|   ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|regOut:matC|reg8b:registers[15].register                                   ; reg8b          ; work         ;
+;       |reg8b:registers[16].register|   ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|regOut:matC|reg8b:registers[16].register                                   ; reg8b          ; work         ;
+;       |reg8b:registers[17].register|   ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|regOut:matC|reg8b:registers[17].register                                   ; reg8b          ; work         ;
+;       |reg8b:registers[18].register|   ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|regOut:matC|reg8b:registers[18].register                                   ; reg8b          ; work         ;
+;       |reg8b:registers[19].register|   ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|regOut:matC|reg8b:registers[19].register                                   ; reg8b          ; work         ;
+;       |reg8b:registers[1].register|    ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|regOut:matC|reg8b:registers[1].register                                    ; reg8b          ; work         ;
+;       |reg8b:registers[20].register|   ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|regOut:matC|reg8b:registers[20].register                                   ; reg8b          ; work         ;
+;       |reg8b:registers[21].register|   ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|regOut:matC|reg8b:registers[21].register                                   ; reg8b          ; work         ;
+;       |reg8b:registers[22].register|   ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|regOut:matC|reg8b:registers[22].register                                   ; reg8b          ; work         ;
+;       |reg8b:registers[23].register|   ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|regOut:matC|reg8b:registers[23].register                                   ; reg8b          ; work         ;
+;       |reg8b:registers[24].register|   ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|regOut:matC|reg8b:registers[24].register                                   ; reg8b          ; work         ;
+;       |reg8b:registers[2].register|    ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|regOut:matC|reg8b:registers[2].register                                    ; reg8b          ; work         ;
+;       |reg8b:registers[3].register|    ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|regOut:matC|reg8b:registers[3].register                                    ; reg8b          ; work         ;
+;       |reg8b:registers[4].register|    ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|regOut:matC|reg8b:registers[4].register                                    ; reg8b          ; work         ;
+;       |reg8b:registers[5].register|    ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|regOut:matC|reg8b:registers[5].register                                    ; reg8b          ; work         ;
+;       |reg8b:registers[6].register|    ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|regOut:matC|reg8b:registers[6].register                                    ; reg8b          ; work         ;
+;       |reg8b:registers[7].register|    ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|regOut:matC|reg8b:registers[7].register                                    ; reg8b          ; work         ;
+;       |reg8b:registers[8].register|    ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|regOut:matC|reg8b:registers[8].register                                    ; reg8b          ; work         ;
+;       |reg8b:registers[9].register|    ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|regOut:matC|reg8b:registers[9].register                                    ; reg8b          ; work         ;
+;    |registerBank25:matA|               ; 78 (33)             ; 200 (0)                   ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|registerBank25:matA                                                        ; registerBank25 ; work         ;
+;       |demux3b:col3|                   ; 5 (5)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|registerBank25:matA|demux3b:col3                                           ; demux3b        ; work         ;
+;       |demux3b:row|                    ; 40 (40)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|registerBank25:matA|demux3b:row                                            ; demux3b        ; work         ;
+;       |reg8b:register[0].regis|        ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|registerBank25:matA|reg8b:register[0].regis                                ; reg8b          ; work         ;
+;       |reg8b:register[10].regis|       ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|registerBank25:matA|reg8b:register[10].regis                               ; reg8b          ; work         ;
+;       |reg8b:register[11].regis|       ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|registerBank25:matA|reg8b:register[11].regis                               ; reg8b          ; work         ;
+;       |reg8b:register[12].regis|       ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|registerBank25:matA|reg8b:register[12].regis                               ; reg8b          ; work         ;
+;       |reg8b:register[13].regis|       ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|registerBank25:matA|reg8b:register[13].regis                               ; reg8b          ; work         ;
+;       |reg8b:register[14].regis|       ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|registerBank25:matA|reg8b:register[14].regis                               ; reg8b          ; work         ;
+;       |reg8b:register[15].regis|       ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|registerBank25:matA|reg8b:register[15].regis                               ; reg8b          ; work         ;
+;       |reg8b:register[16].regis|       ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|registerBank25:matA|reg8b:register[16].regis                               ; reg8b          ; work         ;
+;       |reg8b:register[17].regis|       ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|registerBank25:matA|reg8b:register[17].regis                               ; reg8b          ; work         ;
+;       |reg8b:register[18].regis|       ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|registerBank25:matA|reg8b:register[18].regis                               ; reg8b          ; work         ;
+;       |reg8b:register[19].regis|       ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|registerBank25:matA|reg8b:register[19].regis                               ; reg8b          ; work         ;
+;       |reg8b:register[1].regis|        ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|registerBank25:matA|reg8b:register[1].regis                                ; reg8b          ; work         ;
+;       |reg8b:register[20].regis|       ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|registerBank25:matA|reg8b:register[20].regis                               ; reg8b          ; work         ;
+;       |reg8b:register[21].regis|       ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|registerBank25:matA|reg8b:register[21].regis                               ; reg8b          ; work         ;
+;       |reg8b:register[22].regis|       ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|registerBank25:matA|reg8b:register[22].regis                               ; reg8b          ; work         ;
+;       |reg8b:register[23].regis|       ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|registerBank25:matA|reg8b:register[23].regis                               ; reg8b          ; work         ;
+;       |reg8b:register[24].regis|       ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|registerBank25:matA|reg8b:register[24].regis                               ; reg8b          ; work         ;
+;       |reg8b:register[2].regis|        ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|registerBank25:matA|reg8b:register[2].regis                                ; reg8b          ; work         ;
+;       |reg8b:register[3].regis|        ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|registerBank25:matA|reg8b:register[3].regis                                ; reg8b          ; work         ;
+;       |reg8b:register[4].regis|        ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|registerBank25:matA|reg8b:register[4].regis                                ; reg8b          ; work         ;
+;       |reg8b:register[5].regis|        ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|registerBank25:matA|reg8b:register[5].regis                                ; reg8b          ; work         ;
+;       |reg8b:register[6].regis|        ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|registerBank25:matA|reg8b:register[6].regis                                ; reg8b          ; work         ;
+;       |reg8b:register[7].regis|        ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|registerBank25:matA|reg8b:register[7].regis                                ; reg8b          ; work         ;
+;       |reg8b:register[8].regis|        ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|registerBank25:matA|reg8b:register[8].regis                                ; reg8b          ; work         ;
+;       |reg8b:register[9].regis|        ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|registerBank25:matA|reg8b:register[9].regis                                ; reg8b          ; work         ;
+;    |registerBank25:matB|               ; 78 (33)             ; 200 (0)                   ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|registerBank25:matB                                                        ; registerBank25 ; work         ;
+;       |demux3b:col1|                   ; 5 (5)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|registerBank25:matB|demux3b:col1                                           ; demux3b        ; work         ;
+;       |demux3b:row|                    ; 40 (40)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|registerBank25:matB|demux3b:row                                            ; demux3b        ; work         ;
+;       |reg8b:register[0].regis|        ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|registerBank25:matB|reg8b:register[0].regis                                ; reg8b          ; work         ;
+;       |reg8b:register[10].regis|       ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|registerBank25:matB|reg8b:register[10].regis                               ; reg8b          ; work         ;
+;       |reg8b:register[11].regis|       ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|registerBank25:matB|reg8b:register[11].regis                               ; reg8b          ; work         ;
+;       |reg8b:register[12].regis|       ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|registerBank25:matB|reg8b:register[12].regis                               ; reg8b          ; work         ;
+;       |reg8b:register[13].regis|       ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|registerBank25:matB|reg8b:register[13].regis                               ; reg8b          ; work         ;
+;       |reg8b:register[14].regis|       ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|registerBank25:matB|reg8b:register[14].regis                               ; reg8b          ; work         ;
+;       |reg8b:register[15].regis|       ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|registerBank25:matB|reg8b:register[15].regis                               ; reg8b          ; work         ;
+;       |reg8b:register[16].regis|       ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|registerBank25:matB|reg8b:register[16].regis                               ; reg8b          ; work         ;
+;       |reg8b:register[17].regis|       ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|registerBank25:matB|reg8b:register[17].regis                               ; reg8b          ; work         ;
+;       |reg8b:register[18].regis|       ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|registerBank25:matB|reg8b:register[18].regis                               ; reg8b          ; work         ;
+;       |reg8b:register[19].regis|       ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|registerBank25:matB|reg8b:register[19].regis                               ; reg8b          ; work         ;
+;       |reg8b:register[1].regis|        ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|registerBank25:matB|reg8b:register[1].regis                                ; reg8b          ; work         ;
+;       |reg8b:register[20].regis|       ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|registerBank25:matB|reg8b:register[20].regis                               ; reg8b          ; work         ;
+;       |reg8b:register[21].regis|       ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|registerBank25:matB|reg8b:register[21].regis                               ; reg8b          ; work         ;
+;       |reg8b:register[22].regis|       ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|registerBank25:matB|reg8b:register[22].regis                               ; reg8b          ; work         ;
+;       |reg8b:register[23].regis|       ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|registerBank25:matB|reg8b:register[23].regis                               ; reg8b          ; work         ;
+;       |reg8b:register[24].regis|       ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|registerBank25:matB|reg8b:register[24].regis                               ; reg8b          ; work         ;
+;       |reg8b:register[2].regis|        ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|registerBank25:matB|reg8b:register[2].regis                                ; reg8b          ; work         ;
+;       |reg8b:register[3].regis|        ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|registerBank25:matB|reg8b:register[3].regis                                ; reg8b          ; work         ;
+;       |reg8b:register[4].regis|        ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|registerBank25:matB|reg8b:register[4].regis                                ; reg8b          ; work         ;
+;       |reg8b:register[5].regis|        ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|registerBank25:matB|reg8b:register[5].regis                                ; reg8b          ; work         ;
+;       |reg8b:register[6].regis|        ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|registerBank25:matB|reg8b:register[6].regis                                ; reg8b          ; work         ;
+;       |reg8b:register[7].regis|        ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|registerBank25:matB|reg8b:register[7].regis                                ; reg8b          ; work         ;
+;       |reg8b:register[8].regis|        ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|registerBank25:matB|reg8b:register[8].regis                                ; reg8b          ; work         ;
+;       |reg8b:register[9].regis|        ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|registerBank25:matB|reg8b:register[9].regis                                ; reg8b          ; work         ;
+;    |ula:ULA|                           ; 18001 (207)         ; 605 (201)                 ; 0                 ; 8          ; 0    ; 0            ; |coprocessador|ula:ULA                                                                    ; ula            ; work         ;
+;       |AddOrSub:adder|                 ; 223 (0)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:adder                                                     ; AddOrSub       ; work         ;
+;          |sumMatrix:sum|               ; 223 (13)            ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:adder|sumMatrix:sum                                       ; sumMatrix      ; work         ;
+;             |sum8bc2:adder[0].sum|     ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:adder|sumMatrix:sum|sum8bc2:adder[0].sum                  ; sum8bc2        ; work         ;
+;             |sum8bc2:adder[10].sum|    ; 9 (9)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:adder|sumMatrix:sum|sum8bc2:adder[10].sum                 ; sum8bc2        ; work         ;
+;             |sum8bc2:adder[11].sum|    ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:adder|sumMatrix:sum|sum8bc2:adder[11].sum                 ; sum8bc2        ; work         ;
+;             |sum8bc2:adder[12].sum|    ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:adder|sumMatrix:sum|sum8bc2:adder[12].sum                 ; sum8bc2        ; work         ;
+;             |sum8bc2:adder[13].sum|    ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:adder|sumMatrix:sum|sum8bc2:adder[13].sum                 ; sum8bc2        ; work         ;
+;             |sum8bc2:adder[14].sum|    ; 9 (9)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:adder|sumMatrix:sum|sum8bc2:adder[14].sum                 ; sum8bc2        ; work         ;
+;             |sum8bc2:adder[15].sum|    ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:adder|sumMatrix:sum|sum8bc2:adder[15].sum                 ; sum8bc2        ; work         ;
+;             |sum8bc2:adder[16].sum|    ; 9 (9)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:adder|sumMatrix:sum|sum8bc2:adder[16].sum                 ; sum8bc2        ; work         ;
+;             |sum8bc2:adder[17].sum|    ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:adder|sumMatrix:sum|sum8bc2:adder[17].sum                 ; sum8bc2        ; work         ;
+;             |sum8bc2:adder[18].sum|    ; 9 (9)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:adder|sumMatrix:sum|sum8bc2:adder[18].sum                 ; sum8bc2        ; work         ;
+;             |sum8bc2:adder[19].sum|    ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:adder|sumMatrix:sum|sum8bc2:adder[19].sum                 ; sum8bc2        ; work         ;
+;             |sum8bc2:adder[1].sum|     ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:adder|sumMatrix:sum|sum8bc2:adder[1].sum                  ; sum8bc2        ; work         ;
+;             |sum8bc2:adder[20].sum|    ; 9 (9)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:adder|sumMatrix:sum|sum8bc2:adder[20].sum                 ; sum8bc2        ; work         ;
+;             |sum8bc2:adder[21].sum|    ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:adder|sumMatrix:sum|sum8bc2:adder[21].sum                 ; sum8bc2        ; work         ;
+;             |sum8bc2:adder[22].sum|    ; 9 (9)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:adder|sumMatrix:sum|sum8bc2:adder[22].sum                 ; sum8bc2        ; work         ;
+;             |sum8bc2:adder[23].sum|    ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:adder|sumMatrix:sum|sum8bc2:adder[23].sum                 ; sum8bc2        ; work         ;
+;             |sum8bc2:adder[24].sum|    ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:adder|sumMatrix:sum|sum8bc2:adder[24].sum                 ; sum8bc2        ; work         ;
+;             |sum8bc2:adder[2].sum|     ; 9 (9)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:adder|sumMatrix:sum|sum8bc2:adder[2].sum                  ; sum8bc2        ; work         ;
+;             |sum8bc2:adder[3].sum|     ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:adder|sumMatrix:sum|sum8bc2:adder[3].sum                  ; sum8bc2        ; work         ;
+;             |sum8bc2:adder[4].sum|     ; 9 (9)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:adder|sumMatrix:sum|sum8bc2:adder[4].sum                  ; sum8bc2        ; work         ;
+;             |sum8bc2:adder[5].sum|     ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:adder|sumMatrix:sum|sum8bc2:adder[5].sum                  ; sum8bc2        ; work         ;
+;             |sum8bc2:adder[6].sum|     ; 9 (9)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:adder|sumMatrix:sum|sum8bc2:adder[6].sum                  ; sum8bc2        ; work         ;
+;             |sum8bc2:adder[7].sum|     ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:adder|sumMatrix:sum|sum8bc2:adder[7].sum                  ; sum8bc2        ; work         ;
+;             |sum8bc2:adder[8].sum|     ; 9 (9)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:adder|sumMatrix:sum|sum8bc2:adder[8].sum                  ; sum8bc2        ; work         ;
+;             |sum8bc2:adder[9].sum|     ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:adder|sumMatrix:sum|sum8bc2:adder[9].sum                  ; sum8bc2        ; work         ;
+;       |AddOrSub:subb|                  ; 475 (29)            ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:subb                                                      ; AddOrSub       ; work         ;
+;          |negateMatrix:neg|            ; 237 (0)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:subb|negateMatrix:neg                                     ; negateMatrix   ; work         ;
+;             |negate8bc2:adder[0].neg|  ; 10 (10)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:subb|negateMatrix:neg|negate8bc2:adder[0].neg             ; negate8bc2     ; work         ;
+;             |negate8bc2:adder[10].neg| ; 9 (9)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:subb|negateMatrix:neg|negate8bc2:adder[10].neg            ; negate8bc2     ; work         ;
+;             |negate8bc2:adder[11].neg| ; 9 (9)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:subb|negateMatrix:neg|negate8bc2:adder[11].neg            ; negate8bc2     ; work         ;
+;             |negate8bc2:adder[12].neg| ; 10 (10)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:subb|negateMatrix:neg|negate8bc2:adder[12].neg            ; negate8bc2     ; work         ;
+;             |negate8bc2:adder[13].neg| ; 9 (9)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:subb|negateMatrix:neg|negate8bc2:adder[13].neg            ; negate8bc2     ; work         ;
+;             |negate8bc2:adder[14].neg| ; 9 (9)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:subb|negateMatrix:neg|negate8bc2:adder[14].neg            ; negate8bc2     ; work         ;
+;             |negate8bc2:adder[15].neg| ; 10 (10)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:subb|negateMatrix:neg|negate8bc2:adder[15].neg            ; negate8bc2     ; work         ;
+;             |negate8bc2:adder[16].neg| ; 9 (9)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:subb|negateMatrix:neg|negate8bc2:adder[16].neg            ; negate8bc2     ; work         ;
+;             |negate8bc2:adder[17].neg| ; 9 (9)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:subb|negateMatrix:neg|negate8bc2:adder[17].neg            ; negate8bc2     ; work         ;
+;             |negate8bc2:adder[18].neg| ; 10 (10)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:subb|negateMatrix:neg|negate8bc2:adder[18].neg            ; negate8bc2     ; work         ;
+;             |negate8bc2:adder[19].neg| ; 9 (9)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:subb|negateMatrix:neg|negate8bc2:adder[19].neg            ; negate8bc2     ; work         ;
+;             |negate8bc2:adder[1].neg|  ; 9 (9)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:subb|negateMatrix:neg|negate8bc2:adder[1].neg             ; negate8bc2     ; work         ;
+;             |negate8bc2:adder[20].neg| ; 10 (10)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:subb|negateMatrix:neg|negate8bc2:adder[20].neg            ; negate8bc2     ; work         ;
+;             |negate8bc2:adder[21].neg| ; 10 (10)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:subb|negateMatrix:neg|negate8bc2:adder[21].neg            ; negate8bc2     ; work         ;
+;             |negate8bc2:adder[22].neg| ; 10 (10)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:subb|negateMatrix:neg|negate8bc2:adder[22].neg            ; negate8bc2     ; work         ;
+;             |negate8bc2:adder[23].neg| ; 10 (10)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:subb|negateMatrix:neg|negate8bc2:adder[23].neg            ; negate8bc2     ; work         ;
+;             |negate8bc2:adder[24].neg| ; 10 (10)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:subb|negateMatrix:neg|negate8bc2:adder[24].neg            ; negate8bc2     ; work         ;
+;             |negate8bc2:adder[2].neg|  ; 9 (9)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:subb|negateMatrix:neg|negate8bc2:adder[2].neg             ; negate8bc2     ; work         ;
+;             |negate8bc2:adder[3].neg|  ; 10 (10)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:subb|negateMatrix:neg|negate8bc2:adder[3].neg             ; negate8bc2     ; work         ;
+;             |negate8bc2:adder[4].neg|  ; 9 (9)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:subb|negateMatrix:neg|negate8bc2:adder[4].neg             ; negate8bc2     ; work         ;
+;             |negate8bc2:adder[5].neg|  ; 9 (9)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:subb|negateMatrix:neg|negate8bc2:adder[5].neg             ; negate8bc2     ; work         ;
+;             |negate8bc2:adder[6].neg|  ; 10 (10)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:subb|negateMatrix:neg|negate8bc2:adder[6].neg             ; negate8bc2     ; work         ;
+;             |negate8bc2:adder[7].neg|  ; 9 (9)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:subb|negateMatrix:neg|negate8bc2:adder[7].neg             ; negate8bc2     ; work         ;
+;             |negate8bc2:adder[8].neg|  ; 9 (9)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:subb|negateMatrix:neg|negate8bc2:adder[8].neg             ; negate8bc2     ; work         ;
+;             |negate8bc2:adder[9].neg|  ; 10 (10)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:subb|negateMatrix:neg|negate8bc2:adder[9].neg             ; negate8bc2     ; work         ;
+;          |sumMatrix:sum|               ; 209 (0)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:subb|sumMatrix:sum                                        ; sumMatrix      ; work         ;
+;             |sum8bc2:adder[0].sum|     ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:subb|sumMatrix:sum|sum8bc2:adder[0].sum                   ; sum8bc2        ; work         ;
+;             |sum8bc2:adder[10].sum|    ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:subb|sumMatrix:sum|sum8bc2:adder[10].sum                  ; sum8bc2        ; work         ;
+;             |sum8bc2:adder[11].sum|    ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:subb|sumMatrix:sum|sum8bc2:adder[11].sum                  ; sum8bc2        ; work         ;
+;             |sum8bc2:adder[12].sum|    ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:subb|sumMatrix:sum|sum8bc2:adder[12].sum                  ; sum8bc2        ; work         ;
+;             |sum8bc2:adder[13].sum|    ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:subb|sumMatrix:sum|sum8bc2:adder[13].sum                  ; sum8bc2        ; work         ;
+;             |sum8bc2:adder[14].sum|    ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:subb|sumMatrix:sum|sum8bc2:adder[14].sum                  ; sum8bc2        ; work         ;
+;             |sum8bc2:adder[15].sum|    ; 9 (9)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:subb|sumMatrix:sum|sum8bc2:adder[15].sum                  ; sum8bc2        ; work         ;
+;             |sum8bc2:adder[16].sum|    ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:subb|sumMatrix:sum|sum8bc2:adder[16].sum                  ; sum8bc2        ; work         ;
+;             |sum8bc2:adder[17].sum|    ; 9 (9)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:subb|sumMatrix:sum|sum8bc2:adder[17].sum                  ; sum8bc2        ; work         ;
+;             |sum8bc2:adder[18].sum|    ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:subb|sumMatrix:sum|sum8bc2:adder[18].sum                  ; sum8bc2        ; work         ;
+;             |sum8bc2:adder[19].sum|    ; 9 (9)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:subb|sumMatrix:sum|sum8bc2:adder[19].sum                  ; sum8bc2        ; work         ;
+;             |sum8bc2:adder[1].sum|     ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:subb|sumMatrix:sum|sum8bc2:adder[1].sum                   ; sum8bc2        ; work         ;
+;             |sum8bc2:adder[20].sum|    ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:subb|sumMatrix:sum|sum8bc2:adder[20].sum                  ; sum8bc2        ; work         ;
+;             |sum8bc2:adder[21].sum|    ; 9 (9)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:subb|sumMatrix:sum|sum8bc2:adder[21].sum                  ; sum8bc2        ; work         ;
+;             |sum8bc2:adder[22].sum|    ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:subb|sumMatrix:sum|sum8bc2:adder[22].sum                  ; sum8bc2        ; work         ;
+;             |sum8bc2:adder[23].sum|    ; 9 (9)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:subb|sumMatrix:sum|sum8bc2:adder[23].sum                  ; sum8bc2        ; work         ;
+;             |sum8bc2:adder[24].sum|    ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:subb|sumMatrix:sum|sum8bc2:adder[24].sum                  ; sum8bc2        ; work         ;
+;             |sum8bc2:adder[2].sum|     ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:subb|sumMatrix:sum|sum8bc2:adder[2].sum                   ; sum8bc2        ; work         ;
+;             |sum8bc2:adder[3].sum|     ; 9 (9)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:subb|sumMatrix:sum|sum8bc2:adder[3].sum                   ; sum8bc2        ; work         ;
+;             |sum8bc2:adder[4].sum|     ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:subb|sumMatrix:sum|sum8bc2:adder[4].sum                   ; sum8bc2        ; work         ;
+;             |sum8bc2:adder[5].sum|     ; 9 (9)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:subb|sumMatrix:sum|sum8bc2:adder[5].sum                   ; sum8bc2        ; work         ;
+;             |sum8bc2:adder[6].sum|     ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:subb|sumMatrix:sum|sum8bc2:adder[6].sum                   ; sum8bc2        ; work         ;
+;             |sum8bc2:adder[7].sum|     ; 9 (9)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:subb|sumMatrix:sum|sum8bc2:adder[7].sum                   ; sum8bc2        ; work         ;
+;             |sum8bc2:adder[8].sum|     ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:subb|sumMatrix:sum|sum8bc2:adder[8].sum                   ; sum8bc2        ; work         ;
+;             |sum8bc2:adder[9].sum|     ; 9 (9)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|AddOrSub:subb|sumMatrix:sum|sum8bc2:adder[9].sum                   ; sum8bc2        ; work         ;
+;       |mulEscMatrix:mulEsc|            ; 633 (633)           ; 0 (0)                     ; 0                 ; 8          ; 0    ; 0            ; |coprocessador|ula:ULA|mulEscMatrix:mulEsc                                                ; mulEscMatrix   ; work         ;
+;       |mulMatrix:mulMat|               ; 16463 (80)          ; 404 (0)                   ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat                                                   ; mulMatrix      ; work         ;
+;          |mac8bc2:mac1[0].mac2[0].mac| ; 791 (23)            ; 20 (20)                   ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac                       ; mac8bc2        ; work         ;
+;             |mul8bc2:mac_s[0].macs|    ; 152 (152)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|mul8bc2:mac_s[0].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[1].macs|    ; 152 (152)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|mul8bc2:mac_s[1].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[2].macs|    ; 152 (152)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|mul8bc2:mac_s[2].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[3].macs|    ; 152 (152)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|mul8bc2:mac_s[3].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[4].macs|    ; 152 (152)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|mul8bc2:mac_s[4].macs ; mul8bc2        ; work         ;
+;             |sum8bc2:accumulator|      ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|sum8bc2:accumulator   ; sum8bc2        ; work         ;
+;          |mac8bc2:mac1[0].mac2[1].mac| ; 696 (16)            ; 16 (16)                   ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[1].mac                       ; mac8bc2        ; work         ;
+;             |mul8bc2:mac_s[0].macs|    ; 136 (136)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[1].mac|mul8bc2:mac_s[0].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[1].macs|    ; 134 (134)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[1].mac|mul8bc2:mac_s[1].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[2].macs|    ; 134 (134)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[1].mac|mul8bc2:mac_s[2].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[3].macs|    ; 134 (134)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[1].mac|mul8bc2:mac_s[3].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[4].macs|    ; 134 (134)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[1].mac|mul8bc2:mac_s[4].macs ; mul8bc2        ; work         ;
+;             |sum8bc2:accumulator|      ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[1].mac|sum8bc2:accumulator   ; sum8bc2        ; work         ;
+;          |mac8bc2:mac1[0].mac2[2].mac| ; 700 (16)            ; 16 (16)                   ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[2].mac                       ; mac8bc2        ; work         ;
+;             |mul8bc2:mac_s[0].macs|    ; 134 (134)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[2].mac|mul8bc2:mac_s[0].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[1].macs|    ; 134 (134)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[2].mac|mul8bc2:mac_s[1].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[2].macs|    ; 136 (136)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[2].mac|mul8bc2:mac_s[2].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[3].macs|    ; 136 (136)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[2].mac|mul8bc2:mac_s[3].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[4].macs|    ; 136 (136)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[2].mac|mul8bc2:mac_s[4].macs ; mul8bc2        ; work         ;
+;             |sum8bc2:accumulator|      ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[2].mac|sum8bc2:accumulator   ; sum8bc2        ; work         ;
+;          |mac8bc2:mac1[0].mac2[3].mac| ; 704 (16)            ; 16 (16)                   ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[3].mac                       ; mac8bc2        ; work         ;
+;             |mul8bc2:mac_s[0].macs|    ; 136 (136)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[3].mac|mul8bc2:mac_s[0].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[1].macs|    ; 136 (136)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[3].mac|mul8bc2:mac_s[1].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[2].macs|    ; 136 (136)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[3].mac|mul8bc2:mac_s[2].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[3].macs|    ; 136 (136)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[3].mac|mul8bc2:mac_s[3].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[4].macs|    ; 136 (136)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[3].mac|mul8bc2:mac_s[4].macs ; mul8bc2        ; work         ;
+;             |sum8bc2:accumulator|      ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[3].mac|sum8bc2:accumulator   ; sum8bc2        ; work         ;
+;          |mac8bc2:mac1[0].mac2[4].mac| ; 702 (16)            ; 16 (16)                   ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[4].mac                       ; mac8bc2        ; work         ;
+;             |mul8bc2:mac_s[0].macs|    ; 136 (136)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[4].mac|mul8bc2:mac_s[0].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[1].macs|    ; 136 (136)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[4].mac|mul8bc2:mac_s[1].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[2].macs|    ; 136 (136)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[4].mac|mul8bc2:mac_s[2].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[3].macs|    ; 136 (136)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[4].mac|mul8bc2:mac_s[3].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[4].macs|    ; 134 (134)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[4].mac|mul8bc2:mac_s[4].macs ; mul8bc2        ; work         ;
+;             |sum8bc2:accumulator|      ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[4].mac|sum8bc2:accumulator   ; sum8bc2        ; work         ;
+;          |mac8bc2:mac1[1].mac2[0].mac| ; 700 (16)            ; 16 (16)                   ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[1].mac2[0].mac                       ; mac8bc2        ; work         ;
+;             |mul8bc2:mac_s[0].macs|    ; 136 (136)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[1].mac2[0].mac|mul8bc2:mac_s[0].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[1].macs|    ; 136 (136)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[1].mac2[0].mac|mul8bc2:mac_s[1].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[2].macs|    ; 136 (136)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[1].mac2[0].mac|mul8bc2:mac_s[2].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[3].macs|    ; 134 (134)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[1].mac2[0].mac|mul8bc2:mac_s[3].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[4].macs|    ; 134 (134)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[1].mac2[0].mac|mul8bc2:mac_s[4].macs ; mul8bc2        ; work         ;
+;             |sum8bc2:accumulator|      ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[1].mac2[0].mac|sum8bc2:accumulator   ; sum8bc2        ; work         ;
+;          |mac8bc2:mac1[1].mac2[1].mac| ; 624 (16)            ; 16 (16)                   ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[1].mac2[1].mac                       ; mac8bc2        ; work         ;
+;             |mul8bc2:mac_s[0].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[1].mac2[1].mac|mul8bc2:mac_s[0].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[1].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[1].mac2[1].mac|mul8bc2:mac_s[1].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[2].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[1].mac2[1].mac|mul8bc2:mac_s[2].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[3].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[1].mac2[1].mac|mul8bc2:mac_s[3].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[4].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[1].mac2[1].mac|mul8bc2:mac_s[4].macs ; mul8bc2        ; work         ;
+;             |sum8bc2:accumulator|      ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[1].mac2[1].mac|sum8bc2:accumulator   ; sum8bc2        ; work         ;
+;          |mac8bc2:mac1[1].mac2[2].mac| ; 618 (16)            ; 16 (16)                   ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[1].mac2[2].mac                       ; mac8bc2        ; work         ;
+;             |mul8bc2:mac_s[0].macs|    ; 118 (118)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[1].mac2[2].mac|mul8bc2:mac_s[0].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[1].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[1].mac2[2].mac|mul8bc2:mac_s[1].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[2].macs|    ; 118 (118)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[1].mac2[2].mac|mul8bc2:mac_s[2].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[3].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[1].mac2[2].mac|mul8bc2:mac_s[3].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[4].macs|    ; 118 (118)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[1].mac2[2].mac|mul8bc2:mac_s[4].macs ; mul8bc2        ; work         ;
+;             |sum8bc2:accumulator|      ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[1].mac2[2].mac|sum8bc2:accumulator   ; sum8bc2        ; work         ;
+;          |mac8bc2:mac1[1].mac2[3].mac| ; 624 (16)            ; 16 (16)                   ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[1].mac2[3].mac                       ; mac8bc2        ; work         ;
+;             |mul8bc2:mac_s[0].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[1].mac2[3].mac|mul8bc2:mac_s[0].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[1].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[1].mac2[3].mac|mul8bc2:mac_s[1].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[2].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[1].mac2[3].mac|mul8bc2:mac_s[2].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[3].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[1].mac2[3].mac|mul8bc2:mac_s[3].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[4].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[1].mac2[3].mac|mul8bc2:mac_s[4].macs ; mul8bc2        ; work         ;
+;             |sum8bc2:accumulator|      ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[1].mac2[3].mac|sum8bc2:accumulator   ; sum8bc2        ; work         ;
+;          |mac8bc2:mac1[1].mac2[4].mac| ; 622 (16)            ; 16 (16)                   ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[1].mac2[4].mac                       ; mac8bc2        ; work         ;
+;             |mul8bc2:mac_s[0].macs|    ; 118 (118)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[1].mac2[4].mac|mul8bc2:mac_s[0].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[1].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[1].mac2[4].mac|mul8bc2:mac_s[1].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[2].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[1].mac2[4].mac|mul8bc2:mac_s[2].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[3].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[1].mac2[4].mac|mul8bc2:mac_s[3].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[4].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[1].mac2[4].mac|mul8bc2:mac_s[4].macs ; mul8bc2        ; work         ;
+;             |sum8bc2:accumulator|      ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[1].mac2[4].mac|sum8bc2:accumulator   ; sum8bc2        ; work         ;
+;          |mac8bc2:mac1[2].mac2[0].mac| ; 704 (16)            ; 16 (16)                   ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[2].mac2[0].mac                       ; mac8bc2        ; work         ;
+;             |mul8bc2:mac_s[0].macs|    ; 136 (136)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[2].mac2[0].mac|mul8bc2:mac_s[0].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[1].macs|    ; 136 (136)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[2].mac2[0].mac|mul8bc2:mac_s[1].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[2].macs|    ; 136 (136)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[2].mac2[0].mac|mul8bc2:mac_s[2].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[3].macs|    ; 136 (136)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[2].mac2[0].mac|mul8bc2:mac_s[3].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[4].macs|    ; 136 (136)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[2].mac2[0].mac|mul8bc2:mac_s[4].macs ; mul8bc2        ; work         ;
+;             |sum8bc2:accumulator|      ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[2].mac2[0].mac|sum8bc2:accumulator   ; sum8bc2        ; work         ;
+;          |mac8bc2:mac1[2].mac2[1].mac| ; 624 (16)            ; 16 (16)                   ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[2].mac2[1].mac                       ; mac8bc2        ; work         ;
+;             |mul8bc2:mac_s[0].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[2].mac2[1].mac|mul8bc2:mac_s[0].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[1].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[2].mac2[1].mac|mul8bc2:mac_s[1].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[2].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[2].mac2[1].mac|mul8bc2:mac_s[2].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[3].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[2].mac2[1].mac|mul8bc2:mac_s[3].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[4].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[2].mac2[1].mac|mul8bc2:mac_s[4].macs ; mul8bc2        ; work         ;
+;             |sum8bc2:accumulator|      ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[2].mac2[1].mac|sum8bc2:accumulator   ; sum8bc2        ; work         ;
+;          |mac8bc2:mac1[2].mac2[2].mac| ; 624 (16)            ; 16 (16)                   ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[2].mac2[2].mac                       ; mac8bc2        ; work         ;
+;             |mul8bc2:mac_s[0].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[2].mac2[2].mac|mul8bc2:mac_s[0].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[1].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[2].mac2[2].mac|mul8bc2:mac_s[1].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[2].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[2].mac2[2].mac|mul8bc2:mac_s[2].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[3].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[2].mac2[2].mac|mul8bc2:mac_s[3].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[4].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[2].mac2[2].mac|mul8bc2:mac_s[4].macs ; mul8bc2        ; work         ;
+;             |sum8bc2:accumulator|      ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[2].mac2[2].mac|sum8bc2:accumulator   ; sum8bc2        ; work         ;
+;          |mac8bc2:mac1[2].mac2[3].mac| ; 624 (16)            ; 16 (16)                   ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[2].mac2[3].mac                       ; mac8bc2        ; work         ;
+;             |mul8bc2:mac_s[0].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[2].mac2[3].mac|mul8bc2:mac_s[0].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[1].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[2].mac2[3].mac|mul8bc2:mac_s[1].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[2].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[2].mac2[3].mac|mul8bc2:mac_s[2].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[3].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[2].mac2[3].mac|mul8bc2:mac_s[3].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[4].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[2].mac2[3].mac|mul8bc2:mac_s[4].macs ; mul8bc2        ; work         ;
+;             |sum8bc2:accumulator|      ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[2].mac2[3].mac|sum8bc2:accumulator   ; sum8bc2        ; work         ;
+;          |mac8bc2:mac1[2].mac2[4].mac| ; 624 (16)            ; 16 (16)                   ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[2].mac2[4].mac                       ; mac8bc2        ; work         ;
+;             |mul8bc2:mac_s[0].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[2].mac2[4].mac|mul8bc2:mac_s[0].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[1].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[2].mac2[4].mac|mul8bc2:mac_s[1].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[2].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[2].mac2[4].mac|mul8bc2:mac_s[2].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[3].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[2].mac2[4].mac|mul8bc2:mac_s[3].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[4].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[2].mac2[4].mac|mul8bc2:mac_s[4].macs ; mul8bc2        ; work         ;
+;             |sum8bc2:accumulator|      ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[2].mac2[4].mac|sum8bc2:accumulator   ; sum8bc2        ; work         ;
+;          |mac8bc2:mac1[3].mac2[0].mac| ; 704 (16)            ; 16 (16)                   ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[3].mac2[0].mac                       ; mac8bc2        ; work         ;
+;             |mul8bc2:mac_s[0].macs|    ; 136 (136)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[3].mac2[0].mac|mul8bc2:mac_s[0].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[1].macs|    ; 136 (136)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[3].mac2[0].mac|mul8bc2:mac_s[1].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[2].macs|    ; 136 (136)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[3].mac2[0].mac|mul8bc2:mac_s[2].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[3].macs|    ; 136 (136)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[3].mac2[0].mac|mul8bc2:mac_s[3].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[4].macs|    ; 136 (136)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[3].mac2[0].mac|mul8bc2:mac_s[4].macs ; mul8bc2        ; work         ;
+;             |sum8bc2:accumulator|      ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[3].mac2[0].mac|sum8bc2:accumulator   ; sum8bc2        ; work         ;
+;          |mac8bc2:mac1[3].mac2[1].mac| ; 624 (16)            ; 16 (16)                   ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[3].mac2[1].mac                       ; mac8bc2        ; work         ;
+;             |mul8bc2:mac_s[0].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[3].mac2[1].mac|mul8bc2:mac_s[0].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[1].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[3].mac2[1].mac|mul8bc2:mac_s[1].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[2].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[3].mac2[1].mac|mul8bc2:mac_s[2].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[3].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[3].mac2[1].mac|mul8bc2:mac_s[3].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[4].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[3].mac2[1].mac|mul8bc2:mac_s[4].macs ; mul8bc2        ; work         ;
+;             |sum8bc2:accumulator|      ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[3].mac2[1].mac|sum8bc2:accumulator   ; sum8bc2        ; work         ;
+;          |mac8bc2:mac1[3].mac2[2].mac| ; 625 (17)            ; 16 (16)                   ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[3].mac2[2].mac                       ; mac8bc2        ; work         ;
+;             |mul8bc2:mac_s[0].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[3].mac2[2].mac|mul8bc2:mac_s[0].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[1].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[3].mac2[2].mac|mul8bc2:mac_s[1].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[2].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[3].mac2[2].mac|mul8bc2:mac_s[2].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[3].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[3].mac2[2].mac|mul8bc2:mac_s[3].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[4].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[3].mac2[2].mac|mul8bc2:mac_s[4].macs ; mul8bc2        ; work         ;
+;             |sum8bc2:accumulator|      ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[3].mac2[2].mac|sum8bc2:accumulator   ; sum8bc2        ; work         ;
+;          |mac8bc2:mac1[3].mac2[3].mac| ; 624 (16)            ; 16 (16)                   ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[3].mac2[3].mac                       ; mac8bc2        ; work         ;
+;             |mul8bc2:mac_s[0].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[3].mac2[3].mac|mul8bc2:mac_s[0].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[1].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[3].mac2[3].mac|mul8bc2:mac_s[1].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[2].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[3].mac2[3].mac|mul8bc2:mac_s[2].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[3].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[3].mac2[3].mac|mul8bc2:mac_s[3].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[4].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[3].mac2[3].mac|mul8bc2:mac_s[4].macs ; mul8bc2        ; work         ;
+;             |sum8bc2:accumulator|      ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[3].mac2[3].mac|sum8bc2:accumulator   ; sum8bc2        ; work         ;
+;          |mac8bc2:mac1[3].mac2[4].mac| ; 624 (16)            ; 16 (16)                   ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[3].mac2[4].mac                       ; mac8bc2        ; work         ;
+;             |mul8bc2:mac_s[0].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[3].mac2[4].mac|mul8bc2:mac_s[0].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[1].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[3].mac2[4].mac|mul8bc2:mac_s[1].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[2].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[3].mac2[4].mac|mul8bc2:mac_s[2].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[3].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[3].mac2[4].mac|mul8bc2:mac_s[3].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[4].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[3].mac2[4].mac|mul8bc2:mac_s[4].macs ; mul8bc2        ; work         ;
+;             |sum8bc2:accumulator|      ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[3].mac2[4].mac|sum8bc2:accumulator   ; sum8bc2        ; work         ;
+;          |mac8bc2:mac1[4].mac2[0].mac| ; 704 (16)            ; 16 (16)                   ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[4].mac2[0].mac                       ; mac8bc2        ; work         ;
+;             |mul8bc2:mac_s[0].macs|    ; 136 (136)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[4].mac2[0].mac|mul8bc2:mac_s[0].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[1].macs|    ; 136 (136)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[4].mac2[0].mac|mul8bc2:mac_s[1].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[2].macs|    ; 136 (136)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[4].mac2[0].mac|mul8bc2:mac_s[2].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[3].macs|    ; 136 (136)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[4].mac2[0].mac|mul8bc2:mac_s[3].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[4].macs|    ; 136 (136)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[4].mac2[0].mac|mul8bc2:mac_s[4].macs ; mul8bc2        ; work         ;
+;             |sum8bc2:accumulator|      ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[4].mac2[0].mac|sum8bc2:accumulator   ; sum8bc2        ; work         ;
+;          |mac8bc2:mac1[4].mac2[1].mac| ; 624 (16)            ; 16 (16)                   ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[4].mac2[1].mac                       ; mac8bc2        ; work         ;
+;             |mul8bc2:mac_s[0].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[4].mac2[1].mac|mul8bc2:mac_s[0].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[1].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[4].mac2[1].mac|mul8bc2:mac_s[1].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[2].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[4].mac2[1].mac|mul8bc2:mac_s[2].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[3].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[4].mac2[1].mac|mul8bc2:mac_s[3].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[4].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[4].mac2[1].mac|mul8bc2:mac_s[4].macs ; mul8bc2        ; work         ;
+;             |sum8bc2:accumulator|      ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[4].mac2[1].mac|sum8bc2:accumulator   ; sum8bc2        ; work         ;
+;          |mac8bc2:mac1[4].mac2[2].mac| ; 624 (16)            ; 16 (16)                   ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[4].mac2[2].mac                       ; mac8bc2        ; work         ;
+;             |mul8bc2:mac_s[0].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[4].mac2[2].mac|mul8bc2:mac_s[0].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[1].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[4].mac2[2].mac|mul8bc2:mac_s[1].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[2].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[4].mac2[2].mac|mul8bc2:mac_s[2].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[3].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[4].mac2[2].mac|mul8bc2:mac_s[3].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[4].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[4].mac2[2].mac|mul8bc2:mac_s[4].macs ; mul8bc2        ; work         ;
+;             |sum8bc2:accumulator|      ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[4].mac2[2].mac|sum8bc2:accumulator   ; sum8bc2        ; work         ;
+;          |mac8bc2:mac1[4].mac2[3].mac| ; 624 (16)            ; 16 (16)                   ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[4].mac2[3].mac                       ; mac8bc2        ; work         ;
+;             |mul8bc2:mac_s[0].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[4].mac2[3].mac|mul8bc2:mac_s[0].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[1].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[4].mac2[3].mac|mul8bc2:mac_s[1].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[2].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[4].mac2[3].mac|mul8bc2:mac_s[2].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[3].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[4].mac2[3].mac|mul8bc2:mac_s[3].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[4].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[4].mac2[3].mac|mul8bc2:mac_s[4].macs ; mul8bc2        ; work         ;
+;             |sum8bc2:accumulator|      ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[4].mac2[3].mac|sum8bc2:accumulator   ; sum8bc2        ; work         ;
+;          |mac8bc2:mac1[4].mac2[4].mac| ; 625 (16)            ; 16 (16)                   ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[4].mac2[4].mac                       ; mac8bc2        ; work         ;
+;             |mul8bc2:mac_s[0].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[4].mac2[4].mac|mul8bc2:mac_s[0].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[1].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[4].mac2[4].mac|mul8bc2:mac_s[1].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[2].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[4].mac2[4].mac|mul8bc2:mac_s[2].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[3].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[4].mac2[4].mac|mul8bc2:mac_s[3].macs ; mul8bc2        ; work         ;
+;             |mul8bc2:mac_s[4].macs|    ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[4].mac2[4].mac|mul8bc2:mac_s[4].macs ; mul8bc2        ; work         ;
+;             |sum8bc2:accumulator|      ; 9 (9)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[4].mac2[4].mac|sum8bc2:accumulator   ; sum8bc2        ; work         ;
++----------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-------------------------------------------------------------------------------------------+----------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++-----------------------------------------------+
+; Analysis & Synthesis DSP Block Usage Summary  ;
++---------------------------------+-------------+
+; Statistic                       ; Number Used ;
++---------------------------------+-------------+
+; Independent 18x18 plus 36       ; 1           ;
+; Independent 27x27               ; 7           ;
+; Total number of DSP blocks      ; 8           ;
+;                                 ;             ;
+; Fixed Point Unsigned Multiplier ; 8           ;
++---------------------------------+-------------+
+
+
++---------------------------------------------------------------------------------------------------------------+
+; User-Specified and Inferred Latches                                                                           ;
++-----------------------------------------------------+--------------------------------+------------------------+
+; Latch Name                                          ; Latch Enable Signal            ; Free of Timing Hazards ;
++-----------------------------------------------------+--------------------------------+------------------------+
+; regOut:matC|mux3b:row|data[0]                       ; regOut:matC|mux3b:row|data[7]  ; yes                    ;
+; regOut:matC|mux3b:row|data[1]                       ; regOut:matC|mux3b:row|data[7]  ; yes                    ;
+; regOut:matC|mux3b:row|data[2]                       ; regOut:matC|mux3b:row|data[7]  ; yes                    ;
+; regOut:matC|mux3b:row|data[3]                       ; regOut:matC|mux3b:row|data[7]  ; yes                    ;
+; regOut:matC|mux3b:row|data[4]                       ; regOut:matC|mux3b:row|data[7]  ; yes                    ;
+; regOut:matC|mux3b:row|data[5]                       ; regOut:matC|mux3b:row|data[7]  ; yes                    ;
+; regOut:matC|mux3b:row|data[6]                       ; regOut:matC|mux3b:row|data[7]  ; yes                    ;
+; regOut:matC|mux3b:row|data[7]                       ; regOut:matC|mux3b:row|data[7]  ; yes                    ;
+; regOut:matC|mux3b:col4|data[0]                      ; regOut:matC|mux3b:col4|data[7] ; yes                    ;
+; regOut:matC|mux3b:col4|data[1]                      ; regOut:matC|mux3b:col4|data[7] ; yes                    ;
+; regOut:matC|mux3b:col4|data[2]                      ; regOut:matC|mux3b:col4|data[7] ; yes                    ;
+; regOut:matC|mux3b:col4|data[3]                      ; regOut:matC|mux3b:col4|data[7] ; yes                    ;
+; regOut:matC|mux3b:col4|data[4]                      ; regOut:matC|mux3b:col4|data[7] ; yes                    ;
+; regOut:matC|mux3b:col4|data[5]                      ; regOut:matC|mux3b:col4|data[7] ; yes                    ;
+; regOut:matC|mux3b:col4|data[6]                      ; regOut:matC|mux3b:col4|data[7] ; yes                    ;
+; regOut:matC|mux3b:col4|data[7]                      ; regOut:matC|mux3b:col4|data[7] ; yes                    ;
+; regOut:matC|mux3b:col3|data[0]                      ; regOut:matC|mux3b:col4|data[7] ; yes                    ;
+; regOut:matC|mux3b:col3|data[1]                      ; regOut:matC|mux3b:col4|data[7] ; yes                    ;
+; regOut:matC|mux3b:col3|data[2]                      ; regOut:matC|mux3b:col4|data[7] ; yes                    ;
+; regOut:matC|mux3b:col3|data[3]                      ; regOut:matC|mux3b:col4|data[7] ; yes                    ;
+; regOut:matC|mux3b:col3|data[4]                      ; regOut:matC|mux3b:col4|data[7] ; yes                    ;
+; regOut:matC|mux3b:col3|data[5]                      ; regOut:matC|mux3b:col4|data[7] ; yes                    ;
+; regOut:matC|mux3b:col3|data[6]                      ; regOut:matC|mux3b:col4|data[7] ; yes                    ;
+; regOut:matC|mux3b:col3|data[7]                      ; regOut:matC|mux3b:col4|data[7] ; yes                    ;
+; regOut:matC|mux3b:col2|data[0]                      ; regOut:matC|mux3b:col4|data[7] ; yes                    ;
+; regOut:matC|mux3b:col2|data[1]                      ; regOut:matC|mux3b:col4|data[7] ; yes                    ;
+; regOut:matC|mux3b:col2|data[2]                      ; regOut:matC|mux3b:col4|data[7] ; yes                    ;
+; regOut:matC|mux3b:col2|data[3]                      ; regOut:matC|mux3b:col4|data[7] ; yes                    ;
+; regOut:matC|mux3b:col2|data[4]                      ; regOut:matC|mux3b:col4|data[7] ; yes                    ;
+; regOut:matC|mux3b:col2|data[5]                      ; regOut:matC|mux3b:col4|data[7] ; yes                    ;
+; regOut:matC|mux3b:col2|data[6]                      ; regOut:matC|mux3b:col4|data[7] ; yes                    ;
+; regOut:matC|mux3b:col2|data[7]                      ; regOut:matC|mux3b:col4|data[7] ; yes                    ;
+; regOut:matC|mux3b:col1|data[0]                      ; regOut:matC|mux3b:col4|data[7] ; yes                    ;
+; regOut:matC|mux3b:col1|data[1]                      ; regOut:matC|mux3b:col4|data[7] ; yes                    ;
+; regOut:matC|mux3b:col1|data[2]                      ; regOut:matC|mux3b:col4|data[7] ; yes                    ;
+; regOut:matC|mux3b:col1|data[3]                      ; regOut:matC|mux3b:col4|data[7] ; yes                    ;
+; regOut:matC|mux3b:col1|data[4]                      ; regOut:matC|mux3b:col4|data[7] ; yes                    ;
+; regOut:matC|mux3b:col1|data[5]                      ; regOut:matC|mux3b:col4|data[7] ; yes                    ;
+; regOut:matC|mux3b:col1|data[6]                      ; regOut:matC|mux3b:col4|data[7] ; yes                    ;
+; regOut:matC|mux3b:col1|data[7]                      ; regOut:matC|mux3b:col4|data[7] ; yes                    ;
+; regOut:matC|mux3b:col0|data[0]                      ; regOut:matC|mux3b:col4|data[7] ; yes                    ;
+; regOut:matC|mux3b:col0|data[1]                      ; regOut:matC|mux3b:col4|data[7] ; yes                    ;
+; regOut:matC|mux3b:col0|data[2]                      ; regOut:matC|mux3b:col4|data[7] ; yes                    ;
+; regOut:matC|mux3b:col0|data[3]                      ; regOut:matC|mux3b:col4|data[7] ; yes                    ;
+; regOut:matC|mux3b:col0|data[4]                      ; regOut:matC|mux3b:col4|data[7] ; yes                    ;
+; regOut:matC|mux3b:col0|data[5]                      ; regOut:matC|mux3b:col4|data[7] ; yes                    ;
+; regOut:matC|mux3b:col0|data[6]                      ; regOut:matC|mux3b:col4|data[7] ; yes                    ;
+; regOut:matC|mux3b:col0|data[7]                      ; regOut:matC|mux3b:col4|data[7] ; yes                    ;
+; Number of user-specified and inferred latches = 48  ;                                ;                        ;
++-----------------------------------------------------+--------------------------------+------------------------+
+Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                                                        ;
++---------------------------------------------------------------+---------------------------------------------------------------------------+
+; Register name                                                 ; Reason for Removal                                                        ;
++---------------------------------------------------------------+---------------------------------------------------------------------------+
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[4].mac2[3].mac|rst      ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[4].mac2[3].mac|done     ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[4].mac2[1].mac|rst      ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[4].mac2[1].mac|done     ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[3].mac2[2].mac|rst      ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[3].mac2[2].mac|done     ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[1].mac2[4].mac|rst      ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[1].mac2[4].mac|done     ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[2].mac2[0].mac|rst      ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[2].mac2[0].mac|done     ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|rst      ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|done     ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[1].mac|done     ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|done     ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[1].mac|rst      ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|done     ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[2].mac|done     ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|done     ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[2].mac|rst      ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|done     ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[3].mac|done     ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|done     ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[3].mac|rst      ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|done     ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[4].mac|done     ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|done     ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[4].mac|rst      ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|done     ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[1].mac2[0].mac|done     ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|done     ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[1].mac2[0].mac|rst      ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|done     ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[1].mac2[1].mac|done     ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|done     ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[1].mac2[1].mac|rst      ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|done     ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[1].mac2[2].mac|done     ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|done     ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[1].mac2[2].mac|rst      ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|done     ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[1].mac2[3].mac|done     ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|done     ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[1].mac2[3].mac|rst      ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|done     ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[1].mac2[4].mac|done     ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|done     ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[2].mac2[0].mac|done     ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|done     ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[2].mac2[1].mac|done     ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|done     ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[2].mac2[1].mac|rst      ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|done     ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[2].mac2[2].mac|done     ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|done     ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[2].mac2[2].mac|rst      ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|done     ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[2].mac2[3].mac|done     ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|done     ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[2].mac2[3].mac|rst      ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|done     ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[2].mac2[4].mac|done     ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|done     ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[2].mac2[4].mac|rst      ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|done     ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[3].mac2[0].mac|done     ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|done     ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[3].mac2[0].mac|rst      ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|done     ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[3].mac2[1].mac|done     ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|done     ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[3].mac2[1].mac|rst      ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|done     ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[3].mac2[2].mac|done     ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|done     ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[3].mac2[3].mac|done     ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|done     ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[3].mac2[3].mac|rst      ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|done     ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[3].mac2[4].mac|done     ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|done     ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[3].mac2[4].mac|rst      ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|done     ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[4].mac2[0].mac|done     ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|done     ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[4].mac2[0].mac|rst      ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|done     ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[4].mac2[1].mac|done     ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|done     ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[4].mac2[2].mac|done     ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|done     ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[4].mac2[2].mac|rst      ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|done     ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[4].mac2[3].mac|done     ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|done     ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[4].mac2[4].mac|done     ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|done     ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[4].mac2[4].mac|rst      ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|done     ;
+; clearB                                                        ; Merged with clearA                                                        ;
+; rstOut                                                        ; Merged with clearA                                                        ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[1].mac|count[2] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[2] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[2].mac|count[2] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[2] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[3].mac|count[2] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[2] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[4].mac|count[2] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[2] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[1].mac2[0].mac|count[2] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[2] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[1].mac2[1].mac|count[2] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[2] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[1].mac2[2].mac|count[2] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[2] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[1].mac2[3].mac|count[2] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[2] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[1].mac2[4].mac|count[2] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[2] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[2].mac2[0].mac|count[2] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[2] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[2].mac2[1].mac|count[2] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[2] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[2].mac2[2].mac|count[2] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[2] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[2].mac2[3].mac|count[2] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[2] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[2].mac2[4].mac|count[2] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[2] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[3].mac2[0].mac|count[2] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[2] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[3].mac2[1].mac|count[2] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[2] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[3].mac2[2].mac|count[2] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[2] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[3].mac2[3].mac|count[2] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[2] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[3].mac2[4].mac|count[2] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[2] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[4].mac2[0].mac|count[2] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[2] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[4].mac2[1].mac|count[2] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[2] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[4].mac2[2].mac|count[2] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[2] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[4].mac2[3].mac|count[2] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[2] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[4].mac2[4].mac|count[2] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[2] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[1].mac|count[0] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[0] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[2].mac|count[0] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[0] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[3].mac|count[0] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[0] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[4].mac|count[0] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[0] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[1].mac2[0].mac|count[0] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[0] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[1].mac2[1].mac|count[0] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[0] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[1].mac2[2].mac|count[0] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[0] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[1].mac2[3].mac|count[0] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[0] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[1].mac2[4].mac|count[0] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[0] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[2].mac2[0].mac|count[0] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[0] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[2].mac2[1].mac|count[0] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[0] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[2].mac2[2].mac|count[0] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[0] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[2].mac2[3].mac|count[0] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[0] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[2].mac2[4].mac|count[0] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[0] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[3].mac2[0].mac|count[0] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[0] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[3].mac2[1].mac|count[0] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[0] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[3].mac2[2].mac|count[0] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[0] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[3].mac2[3].mac|count[0] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[0] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[3].mac2[4].mac|count[0] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[0] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[4].mac2[0].mac|count[0] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[0] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[4].mac2[1].mac|count[0] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[0] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[4].mac2[2].mac|count[0] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[0] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[4].mac2[3].mac|count[0] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[0] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[4].mac2[4].mac|count[0] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[0] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[1].mac|count[1] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[1] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[2].mac|count[1] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[1] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[3].mac|count[1] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[1] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[4].mac|count[1] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[1] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[1].mac2[0].mac|count[1] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[1] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[1].mac2[1].mac|count[1] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[1] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[1].mac2[2].mac|count[1] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[1] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[1].mac2[3].mac|count[1] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[1] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[1].mac2[4].mac|count[1] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[1] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[2].mac2[0].mac|count[1] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[1] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[2].mac2[1].mac|count[1] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[1] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[2].mac2[2].mac|count[1] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[1] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[2].mac2[3].mac|count[1] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[1] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[2].mac2[4].mac|count[1] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[1] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[3].mac2[0].mac|count[1] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[1] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[3].mac2[1].mac|count[1] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[1] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[3].mac2[2].mac|count[1] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[1] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[3].mac2[3].mac|count[1] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[1] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[3].mac2[4].mac|count[1] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[1] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[4].mac2[0].mac|count[1] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[1] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[4].mac2[1].mac|count[1] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[1] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[4].mac2[2].mac|count[1] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[1] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[4].mac2[3].mac|count[1] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[1] ;
+; ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[4].mac2[4].mac|count[1] ; Merged with ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[1] ;
+; Total Number of Removed Registers = 123                       ;                                                                           ;
++---------------------------------------------------------------+---------------------------------------------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 1225  ;
+; Number of registers using Synchronous Clear  ; 803   ;
+; Number of registers using Synchronous Load   ; 0     ;
+; Number of registers using Asynchronous Clear ; 600   ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 1218  ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                                  ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                        ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------------+
+; 3:1                ; 200 bits  ; 400 LEs       ; 0 LEs                ; 400 LEs                ; Yes        ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[3].mac2[2].mac|acc[7]        ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|count[2]      ;
+; 5:1                ; 200 bits  ; 600 LEs       ; 400 LEs              ; 200 LEs                ; Yes        ; |coprocessador|ula:ULA|Mat0[15]                                                   ;
+; 10:1               ; 200 bits  ; 1200 LEs      ; 600 LEs              ; 600 LEs                ; Yes        ; |coprocessador|ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|mul_result[6] ;
+; 3:1                ; 9 bits    ; 18 LEs        ; 18 LEs               ; 0 LEs                  ; No         ; |coprocessador|registerBank25:matA|ShiftLeft0                                     ;
+; 3:1                ; 9 bits    ; 18 LEs        ; 18 LEs               ; 0 LEs                  ; No         ; |coprocessador|registerBank25:matA|ShiftLeft0                                     ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 24 LEs               ; 0 LEs                  ; No         ; |coprocessador|regOut:matC|mux3b:row|data[7]                                      ;
+; 8:1                ; 2 bits    ; 10 LEs        ; 4 LEs                ; 6 LEs                  ; Yes        ; |coprocessador|ulaOp[0]                                                           ;
+; 7:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |coprocessador|count_clk[2]                                                       ;
+; 3:1                ; 9 bits    ; 18 LEs        ; 18 LEs               ; 0 LEs                  ; No         ; |coprocessador|registerBank25:matB|ShiftLeft0                                     ;
+; 3:1                ; 9 bits    ; 18 LEs        ; 18 LEs               ; 0 LEs                  ; No         ; |coprocessador|registerBank25:matB|ShiftLeft0                                     ;
+; 4:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |coprocessador|registerBank25:matB|ShiftLeft0                                     ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |coprocessador|registerBank25:matB|ShiftLeft0                                     ;
+; 5:1                ; 40 bits   ; 120 LEs       ; 120 LEs              ; 0 LEs                  ; No         ; |coprocessador|regOut:matC|mux3b:col1|data[6]                                     ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Top-level Entity: |coprocessador ;
++----------------+-------+------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                 ;
++----------------+-------+------------------------------------------------------+
+; LOAD           ; 001   ; Unsigned Binary                                      ;
+; STORE          ; 010   ; Unsigned Binary                                      ;
+; ADD            ; 011   ; Unsigned Binary                                      ;
+; SUB            ; 100   ; Unsigned Binary                                      ;
+; MULE           ; 101   ; Unsigned Binary                                      ;
+; MULM           ; 110   ; Unsigned Binary                                      ;
+; NOP            ; 000   ; Unsigned Binary                                      ;
+; RST            ; 111   ; Unsigned Binary                                      ;
++----------------+-------+------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------+
+; Port Connectivity Checks: "ula:ULA|AddOrSub:subb" ;
++--------+-------+----------+-----------------------+
+; Port   ; Type  ; Severity ; Details               ;
++--------+-------+----------+-----------------------+
+; Select ; Input ; Info     ; Stuck at VCC          ;
++--------+-------+----------+-----------------------+
+
+
++----------------------------------------------------+
+; Port Connectivity Checks: "ula:ULA|AddOrSub:adder" ;
++--------+-------+----------+------------------------+
+; Port   ; Type  ; Severity ; Details                ;
++--------+-------+----------+------------------------+
+; Select ; Input ; Info     ; Stuck at GND           ;
++--------+-------+----------+------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "registerBank25:matA|demux3b:col4"                                                       ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+; Port     ; Type   ; Severity ; Details                                                                             ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+; dataOut5 ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "registerBank25:matA|demux3b:col3"                                                       ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+; Port     ; Type   ; Severity ; Details                                                                             ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+; dataOut5 ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "registerBank25:matA|demux3b:col2"                                                       ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+; Port     ; Type   ; Severity ; Details                                                                             ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+; dataOut5 ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "registerBank25:matA|demux3b:col1"                                                       ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+; Port     ; Type   ; Severity ; Details                                                                             ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+; dataOut5 ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "registerBank25:matA|demux3b:col0"                                                       ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+; Port     ; Type   ; Severity ; Details                                                                             ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+; dataOut5 ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "registerBank25:matA|demux3b:row"                                                        ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+; Port     ; Type   ; Severity ; Details                                                                             ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+; dataOut5 ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; arriav_ff             ; 1225                        ;
+;     ENA               ; 216                         ;
+;     ENA CLR           ; 200                         ;
+;     ENA CLR SCLR      ; 400                         ;
+;     ENA SCLR          ; 402                         ;
+;     SCLR              ; 1                           ;
+;     plain             ; 6                           ;
+; arriav_lcell_comb     ; 18340                       ;
+;     arith             ; 11720                       ;
+;         0 data inputs ; 877                         ;
+;         1 data inputs ; 1185                        ;
+;         2 data inputs ; 1150                        ;
+;         3 data inputs ; 254                         ;
+;         4 data inputs ; 5629                        ;
+;         5 data inputs ; 2625                        ;
+;     normal            ; 6620                        ;
+;         2 data inputs ; 436                         ;
+;         3 data inputs ; 3283                        ;
+;         4 data inputs ; 604                         ;
+;         5 data inputs ; 348                         ;
+;         6 data inputs ; 1949                        ;
+; arriav_mac            ; 8                           ;
+; boundary_port         ; 31                          ;
+;                       ;                             ;
+; Max LUT depth         ; 23.00                       ;
+; Average LUT depth     ; 18.70                       ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:14     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+    Info: Version 23.1std.0 Build 991 11/28/2023 SC Lite Edition
+    Info: Processing started: Thu May 15 11:59:15 2025
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off CoProcessor -c CoProcessor
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 14 of the 14 processors detected
+Info (12021): Found 1 design units, including 1 entities, in source file auxModules/sum8bc2.v
+    Info (12023): Found entity 1: sum8bc2 File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/sum8bc2.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file auxModules/regOut.v
+    Info (12023): Found entity 1: regOut File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/regOut.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file auxModules/registerBank25.v
+    Info (12023): Found entity 1: registerBank25 File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/registerBank25.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file auxModules/reg8b.v
+    Info (12023): Found entity 1: reg8b File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/reg8b.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file auxModules/negate8bc2.v
+    Info (12023): Found entity 1: negate8bc2 File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/negate8bc2.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file auxModules/mux3b.v
+    Info (12023): Found entity 1: mux3b File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mux3b.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file auxModules/mul8bc2.v
+    Info (12023): Found entity 1: mul8bc2 File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mul8bc2.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file auxModules/mac8bc2.v
+    Info (12023): Found entity 1: mac8bc2 File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mac8bc2.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file auxModules/demux3b.v
+    Info (12023): Found entity 1: demux3b File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/demux3b.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file auxModules/demux1b.v
+    Info (12023): Found entity 1: demux1b File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/demux1b.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file ula.v
+    Info (12023): Found entity 1: ula File: /home/professor/Documentos/TEC499_SD/CopMatri/ula.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file sumMatrix.v
+    Info (12023): Found entity 1: sumMatrix File: /home/professor/Documentos/TEC499_SD/CopMatri/sumMatrix.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file negateMatrix.v
+    Info (12023): Found entity 1: negateMatrix File: /home/professor/Documentos/TEC499_SD/CopMatri/negateMatrix.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file mulMatrix.v
+    Info (12023): Found entity 1: mulMatrix File: /home/professor/Documentos/TEC499_SD/CopMatri/mulMatrix.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file mulEscMatrix.v
+    Info (12023): Found entity 1: mulEscMatrix File: /home/professor/Documentos/TEC499_SD/CopMatri/mulEscMatrix.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file coprocessador.v
+    Info (12023): Found entity 1: coprocessador File: /home/professor/Documentos/TEC499_SD/CopMatri/coprocessador.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file AddOrSub.v
+    Info (12023): Found entity 1: AddOrSub File: /home/professor/Documentos/TEC499_SD/CopMatri/AddOrSub.v Line: 1
+Warning (10236): Verilog HDL Implicit Net warning at AddOrSub.v(10): created implicit net for "negOverflow" File: /home/professor/Documentos/TEC499_SD/CopMatri/AddOrSub.v Line: 10
+Warning (10236): Verilog HDL Implicit Net warning at AddOrSub.v(11): created implicit net for "addOverflow" File: /home/professor/Documentos/TEC499_SD/CopMatri/AddOrSub.v Line: 11
+Info (12127): Elaborating entity "coprocessador" for the top level hierarchy
+Warning (10230): Verilog HDL assignment warning at coprocessador.v(67): truncated value with size 32 to match size of target (3) File: /home/professor/Documentos/TEC499_SD/CopMatri/coprocessador.v Line: 67
+Warning (10230): Verilog HDL assignment warning at coprocessador.v(81): truncated value with size 32 to match size of target (3) File: /home/professor/Documentos/TEC499_SD/CopMatri/coprocessador.v Line: 81
+Warning (10230): Verilog HDL assignment warning at coprocessador.v(92): truncated value with size 32 to match size of target (3) File: /home/professor/Documentos/TEC499_SD/CopMatri/coprocessador.v Line: 92
+Warning (10230): Verilog HDL assignment warning at coprocessador.v(101): truncated value with size 32 to match size of target (3) File: /home/professor/Documentos/TEC499_SD/CopMatri/coprocessador.v Line: 101
+Warning (10230): Verilog HDL assignment warning at coprocessador.v(113): truncated value with size 32 to match size of target (3) File: /home/professor/Documentos/TEC499_SD/CopMatri/coprocessador.v Line: 113
+Warning (10230): Verilog HDL assignment warning at coprocessador.v(122): truncated value with size 32 to match size of target (3) File: /home/professor/Documentos/TEC499_SD/CopMatri/coprocessador.v Line: 122
+Warning (10230): Verilog HDL assignment warning at coprocessador.v(134): truncated value with size 32 to match size of target (3) File: /home/professor/Documentos/TEC499_SD/CopMatri/coprocessador.v Line: 134
+Warning (10230): Verilog HDL assignment warning at coprocessador.v(144): truncated value with size 32 to match size of target (3) File: /home/professor/Documentos/TEC499_SD/CopMatri/coprocessador.v Line: 144
+Warning (10230): Verilog HDL assignment warning at coprocessador.v(156): truncated value with size 32 to match size of target (3) File: /home/professor/Documentos/TEC499_SD/CopMatri/coprocessador.v Line: 156
+Warning (10230): Verilog HDL assignment warning at coprocessador.v(166): truncated value with size 32 to match size of target (3) File: /home/professor/Documentos/TEC499_SD/CopMatri/coprocessador.v Line: 166
+Warning (10230): Verilog HDL assignment warning at coprocessador.v(174): truncated value with size 32 to match size of target (3) File: /home/professor/Documentos/TEC499_SD/CopMatri/coprocessador.v Line: 174
+Info (12128): Elaborating entity "demux1b" for hierarchy "demux1b:demux1b0" File: /home/professor/Documentos/TEC499_SD/CopMatri/coprocessador.v Line: 205
+Info (12128): Elaborating entity "registerBank25" for hierarchy "registerBank25:matA" File: /home/professor/Documentos/TEC499_SD/CopMatri/coprocessador.v Line: 214
+Info (12128): Elaborating entity "demux3b" for hierarchy "registerBank25:matA|demux3b:row" File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/registerBank25.v Line: 20
+Info (12128): Elaborating entity "reg8b" for hierarchy "registerBank25:matA|reg8b:register[0].regis" File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/registerBank25.v Line: 30
+Info (12128): Elaborating entity "ula" for hierarchy "ula:ULA" File: /home/professor/Documentos/TEC499_SD/CopMatri/coprocessador.v Line: 234
+Info (12128): Elaborating entity "AddOrSub" for hierarchy "ula:ULA|AddOrSub:adder" File: /home/professor/Documentos/TEC499_SD/CopMatri/ula.v Line: 16
+Info (12128): Elaborating entity "negateMatrix" for hierarchy "ula:ULA|AddOrSub:adder|negateMatrix:neg" File: /home/professor/Documentos/TEC499_SD/CopMatri/AddOrSub.v Line: 10
+Warning (10030): Net "singOverflow[25]" at negateMatrix.v(6) has no driver or initial value, using a default initial value '0' File: /home/professor/Documentos/TEC499_SD/CopMatri/negateMatrix.v Line: 6
+Info (12128): Elaborating entity "negate8bc2" for hierarchy "ula:ULA|AddOrSub:adder|negateMatrix:neg|negate8bc2:adder[0].neg" File: /home/professor/Documentos/TEC499_SD/CopMatri/negateMatrix.v Line: 13
+Info (12128): Elaborating entity "sumMatrix" for hierarchy "ula:ULA|AddOrSub:adder|sumMatrix:sum" File: /home/professor/Documentos/TEC499_SD/CopMatri/AddOrSub.v Line: 11
+Info (12128): Elaborating entity "sum8bc2" for hierarchy "ula:ULA|AddOrSub:adder|sumMatrix:sum|sum8bc2:adder[0].sum" File: /home/professor/Documentos/TEC499_SD/CopMatri/sumMatrix.v Line: 13
+Info (12128): Elaborating entity "mulEscMatrix" for hierarchy "ula:ULA|mulEscMatrix:mulEsc" File: /home/professor/Documentos/TEC499_SD/CopMatri/ula.v Line: 19
+Warning (10034): Output port "Overflow" at mulEscMatrix.v(5) has no driver File: /home/professor/Documentos/TEC499_SD/CopMatri/mulEscMatrix.v Line: 5
+Info (12128): Elaborating entity "mulMatrix" for hierarchy "ula:ULA|mulMatrix:mulMat" File: /home/professor/Documentos/TEC499_SD/CopMatri/ula.v Line: 20
+Info (12128): Elaborating entity "mac8bc2" for hierarchy "ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac" File: /home/professor/Documentos/TEC499_SD/CopMatri/mulMatrix.v Line: 22
+Warning (10230): Verilog HDL assignment warning at mac8bc2.v(57): truncated value with size 32 to match size of target (3) File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mac8bc2.v Line: 57
+Warning (10230): Verilog HDL assignment warning at mac8bc2.v(62): truncated value with size 32 to match size of target (3) File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mac8bc2.v Line: 62
+Warning (10230): Verilog HDL assignment warning at mac8bc2.v(67): truncated value with size 32 to match size of target (3) File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mac8bc2.v Line: 67
+Warning (10230): Verilog HDL assignment warning at mac8bc2.v(72): truncated value with size 32 to match size of target (3) File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mac8bc2.v Line: 72
+Warning (10230): Verilog HDL assignment warning at mac8bc2.v(77): truncated value with size 32 to match size of target (3) File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mac8bc2.v Line: 77
+Info (12128): Elaborating entity "mul8bc2" for hierarchy "ula:ULA|mulMatrix:mulMat|mac8bc2:mac1[0].mac2[0].mac|mul8bc2:mac_s[0].macs" File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mac8bc2.v Line: 26
+Warning (10230): Verilog HDL assignment warning at mul8bc2.v(15): truncated value with size 32 to match size of target (8) File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mul8bc2.v Line: 15
+Warning (10230): Verilog HDL assignment warning at mul8bc2.v(16): truncated value with size 32 to match size of target (8) File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mul8bc2.v Line: 16
+Warning (10230): Verilog HDL assignment warning at mul8bc2.v(28): truncated value with size 32 to match size of target (16) File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mul8bc2.v Line: 28
+Warning (10230): Verilog HDL assignment warning at mul8bc2.v(29): truncated value with size 16 to match size of target (8) File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mul8bc2.v Line: 29
+Info (12128): Elaborating entity "regOut" for hierarchy "regOut:matC" File: /home/professor/Documentos/TEC499_SD/CopMatri/coprocessador.v Line: 244
+Info (12128): Elaborating entity "mux3b" for hierarchy "regOut:matC|mux3b:col0" File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/regOut.v Line: 15
+Warning (10240): Verilog HDL Always Construct warning at mux3b.v(8): inferring latch(es) for variable "data", which holds its previous value in one or more paths through the always construct File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mux3b.v Line: 8
+Info (10041): Inferred latch for "data[0]" at mux3b.v(8) File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mux3b.v Line: 8
+Info (10041): Inferred latch for "data[1]" at mux3b.v(8) File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mux3b.v Line: 8
+Info (10041): Inferred latch for "data[2]" at mux3b.v(8) File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mux3b.v Line: 8
+Info (10041): Inferred latch for "data[3]" at mux3b.v(8) File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mux3b.v Line: 8
+Info (10041): Inferred latch for "data[4]" at mux3b.v(8) File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mux3b.v Line: 8
+Info (10041): Inferred latch for "data[5]" at mux3b.v(8) File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mux3b.v Line: 8
+Info (10041): Inferred latch for "data[6]" at mux3b.v(8) File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mux3b.v Line: 8
+Info (10041): Inferred latch for "data[7]" at mux3b.v(8) File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mux3b.v Line: 8
+Warning (13012): Latch regOut:matC|mux3b:col4|data[0] has unsafe behavior File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mux3b.v Line: 8
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal instruction[3]~synth File: /home/professor/Documentos/TEC499_SD/CopMatri/coprocessador.v Line: 13
+Warning (13012): Latch regOut:matC|mux3b:col4|data[1] has unsafe behavior File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mux3b.v Line: 8
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal instruction[3]~synth File: /home/professor/Documentos/TEC499_SD/CopMatri/coprocessador.v Line: 13
+Warning (13012): Latch regOut:matC|mux3b:col4|data[2] has unsafe behavior File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mux3b.v Line: 8
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal instruction[3]~synth File: /home/professor/Documentos/TEC499_SD/CopMatri/coprocessador.v Line: 13
+Warning (13012): Latch regOut:matC|mux3b:col4|data[3] has unsafe behavior File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mux3b.v Line: 8
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal instruction[3]~synth File: /home/professor/Documentos/TEC499_SD/CopMatri/coprocessador.v Line: 13
+Warning (13012): Latch regOut:matC|mux3b:col4|data[4] has unsafe behavior File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mux3b.v Line: 8
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal instruction[3]~synth File: /home/professor/Documentos/TEC499_SD/CopMatri/coprocessador.v Line: 13
+Warning (13012): Latch regOut:matC|mux3b:col4|data[5] has unsafe behavior File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mux3b.v Line: 8
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal instruction[3]~synth File: /home/professor/Documentos/TEC499_SD/CopMatri/coprocessador.v Line: 13
+Warning (13012): Latch regOut:matC|mux3b:col4|data[6] has unsafe behavior File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mux3b.v Line: 8
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal instruction[3]~synth File: /home/professor/Documentos/TEC499_SD/CopMatri/coprocessador.v Line: 13
+Warning (13012): Latch regOut:matC|mux3b:col4|data[7] has unsafe behavior File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mux3b.v Line: 8
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal instruction[3]~synth File: /home/professor/Documentos/TEC499_SD/CopMatri/coprocessador.v Line: 13
+Warning (13012): Latch regOut:matC|mux3b:col3|data[0] has unsafe behavior File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mux3b.v Line: 8
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal instruction[3]~synth File: /home/professor/Documentos/TEC499_SD/CopMatri/coprocessador.v Line: 13
+Warning (13012): Latch regOut:matC|mux3b:col3|data[1] has unsafe behavior File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mux3b.v Line: 8
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal instruction[3]~synth File: /home/professor/Documentos/TEC499_SD/CopMatri/coprocessador.v Line: 13
+Warning (13012): Latch regOut:matC|mux3b:col3|data[2] has unsafe behavior File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mux3b.v Line: 8
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal instruction[3]~synth File: /home/professor/Documentos/TEC499_SD/CopMatri/coprocessador.v Line: 13
+Warning (13012): Latch regOut:matC|mux3b:col3|data[3] has unsafe behavior File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mux3b.v Line: 8
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal instruction[3]~synth File: /home/professor/Documentos/TEC499_SD/CopMatri/coprocessador.v Line: 13
+Warning (13012): Latch regOut:matC|mux3b:col3|data[4] has unsafe behavior File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mux3b.v Line: 8
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal instruction[3]~synth File: /home/professor/Documentos/TEC499_SD/CopMatri/coprocessador.v Line: 13
+Warning (13012): Latch regOut:matC|mux3b:col3|data[5] has unsafe behavior File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mux3b.v Line: 8
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal instruction[3]~synth File: /home/professor/Documentos/TEC499_SD/CopMatri/coprocessador.v Line: 13
+Warning (13012): Latch regOut:matC|mux3b:col3|data[6] has unsafe behavior File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mux3b.v Line: 8
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal instruction[3]~synth File: /home/professor/Documentos/TEC499_SD/CopMatri/coprocessador.v Line: 13
+Warning (13012): Latch regOut:matC|mux3b:col3|data[7] has unsafe behavior File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mux3b.v Line: 8
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal instruction[3]~synth File: /home/professor/Documentos/TEC499_SD/CopMatri/coprocessador.v Line: 13
+Warning (13012): Latch regOut:matC|mux3b:col2|data[0] has unsafe behavior File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mux3b.v Line: 8
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal instruction[3]~synth File: /home/professor/Documentos/TEC499_SD/CopMatri/coprocessador.v Line: 13
+Warning (13012): Latch regOut:matC|mux3b:col2|data[1] has unsafe behavior File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mux3b.v Line: 8
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal instruction[3]~synth File: /home/professor/Documentos/TEC499_SD/CopMatri/coprocessador.v Line: 13
+Warning (13012): Latch regOut:matC|mux3b:col2|data[2] has unsafe behavior File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mux3b.v Line: 8
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal instruction[3]~synth File: /home/professor/Documentos/TEC499_SD/CopMatri/coprocessador.v Line: 13
+Warning (13012): Latch regOut:matC|mux3b:col2|data[3] has unsafe behavior File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mux3b.v Line: 8
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal instruction[3]~synth File: /home/professor/Documentos/TEC499_SD/CopMatri/coprocessador.v Line: 13
+Warning (13012): Latch regOut:matC|mux3b:col2|data[4] has unsafe behavior File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mux3b.v Line: 8
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal instruction[3]~synth File: /home/professor/Documentos/TEC499_SD/CopMatri/coprocessador.v Line: 13
+Warning (13012): Latch regOut:matC|mux3b:col2|data[5] has unsafe behavior File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mux3b.v Line: 8
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal instruction[3]~synth File: /home/professor/Documentos/TEC499_SD/CopMatri/coprocessador.v Line: 13
+Warning (13012): Latch regOut:matC|mux3b:col2|data[6] has unsafe behavior File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mux3b.v Line: 8
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal instruction[3]~synth File: /home/professor/Documentos/TEC499_SD/CopMatri/coprocessador.v Line: 13
+Warning (13012): Latch regOut:matC|mux3b:col2|data[7] has unsafe behavior File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mux3b.v Line: 8
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal instruction[3]~synth File: /home/professor/Documentos/TEC499_SD/CopMatri/coprocessador.v Line: 13
+Warning (13012): Latch regOut:matC|mux3b:col1|data[0] has unsafe behavior File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mux3b.v Line: 8
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal instruction[3]~synth File: /home/professor/Documentos/TEC499_SD/CopMatri/coprocessador.v Line: 13
+Warning (13012): Latch regOut:matC|mux3b:col1|data[1] has unsafe behavior File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mux3b.v Line: 8
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal instruction[3]~synth File: /home/professor/Documentos/TEC499_SD/CopMatri/coprocessador.v Line: 13
+Warning (13012): Latch regOut:matC|mux3b:col1|data[2] has unsafe behavior File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mux3b.v Line: 8
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal instruction[3]~synth File: /home/professor/Documentos/TEC499_SD/CopMatri/coprocessador.v Line: 13
+Warning (13012): Latch regOut:matC|mux3b:col1|data[3] has unsafe behavior File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mux3b.v Line: 8
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal instruction[3]~synth File: /home/professor/Documentos/TEC499_SD/CopMatri/coprocessador.v Line: 13
+Warning (13012): Latch regOut:matC|mux3b:col1|data[4] has unsafe behavior File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mux3b.v Line: 8
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal instruction[3]~synth File: /home/professor/Documentos/TEC499_SD/CopMatri/coprocessador.v Line: 13
+Warning (13012): Latch regOut:matC|mux3b:col1|data[5] has unsafe behavior File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mux3b.v Line: 8
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal instruction[3]~synth File: /home/professor/Documentos/TEC499_SD/CopMatri/coprocessador.v Line: 13
+Warning (13012): Latch regOut:matC|mux3b:col1|data[6] has unsafe behavior File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mux3b.v Line: 8
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal instruction[3]~synth File: /home/professor/Documentos/TEC499_SD/CopMatri/coprocessador.v Line: 13
+Warning (13012): Latch regOut:matC|mux3b:col1|data[7] has unsafe behavior File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mux3b.v Line: 8
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal instruction[3]~synth File: /home/professor/Documentos/TEC499_SD/CopMatri/coprocessador.v Line: 13
+Warning (13012): Latch regOut:matC|mux3b:col0|data[0] has unsafe behavior File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mux3b.v Line: 8
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal instruction[3]~synth File: /home/professor/Documentos/TEC499_SD/CopMatri/coprocessador.v Line: 13
+Warning (13012): Latch regOut:matC|mux3b:col0|data[1] has unsafe behavior File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mux3b.v Line: 8
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal instruction[3]~synth File: /home/professor/Documentos/TEC499_SD/CopMatri/coprocessador.v Line: 13
+Warning (13012): Latch regOut:matC|mux3b:col0|data[2] has unsafe behavior File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mux3b.v Line: 8
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal instruction[3]~synth File: /home/professor/Documentos/TEC499_SD/CopMatri/coprocessador.v Line: 13
+Warning (13012): Latch regOut:matC|mux3b:col0|data[3] has unsafe behavior File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mux3b.v Line: 8
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal instruction[3]~synth File: /home/professor/Documentos/TEC499_SD/CopMatri/coprocessador.v Line: 13
+Warning (13012): Latch regOut:matC|mux3b:col0|data[4] has unsafe behavior File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mux3b.v Line: 8
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal instruction[3]~synth File: /home/professor/Documentos/TEC499_SD/CopMatri/coprocessador.v Line: 13
+Warning (13012): Latch regOut:matC|mux3b:col0|data[5] has unsafe behavior File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mux3b.v Line: 8
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal instruction[3]~synth File: /home/professor/Documentos/TEC499_SD/CopMatri/coprocessador.v Line: 13
+Warning (13012): Latch regOut:matC|mux3b:col0|data[6] has unsafe behavior File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mux3b.v Line: 8
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal instruction[3]~synth File: /home/professor/Documentos/TEC499_SD/CopMatri/coprocessador.v Line: 13
+Warning (13012): Latch regOut:matC|mux3b:col0|data[7] has unsafe behavior File: /home/professor/Documentos/TEC499_SD/CopMatri/auxModules/mux3b.v Line: 8
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal instruction[3]~synth File: /home/professor/Documentos/TEC499_SD/CopMatri/coprocessador.v Line: 13
+Info (286030): Timing-Driven Synthesis is running
+Info (144001): Generated suppressed messages file /home/professor/Documentos/TEC499_SD/CopMatri/output_files/CoProcessor.map.smsg
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Info (21057): Implemented 19012 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 20 input pins
+    Info (21059): Implemented 11 output pins
+    Info (21061): Implemented 18973 logic cells
+    Info (21062): Implemented 8 DSP elements
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 106 warnings
+    Info: Peak virtual memory: 678 megabytes
+    Info: Processing ended: Thu May 15 11:59:36 2025
+    Info: Elapsed time: 00:00:21
+    Info: Total CPU time (on all processors): 00:00:32
+
+
++------------------------------------------+
+; Analysis & Synthesis Suppressed Messages ;
++------------------------------------------+
+The suppressed messages can be found in /home/professor/Documentos/TEC499_SD/CopMatri/output_files/CoProcessor.map.smsg.
+
+

@@ -1,0 +1,133 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "dataOut[0]",
+					"strict" : false
+				},
+				{
+					"name" : "dataOut[1]",
+					"strict" : false
+				},
+				{
+					"name" : "dataOut[2]",
+					"strict" : false
+				},
+				{
+					"name" : "dataOut[3]",
+					"strict" : false
+				},
+				{
+					"name" : "dataOut[4]",
+					"strict" : false
+				},
+				{
+					"name" : "dataOut[5]",
+					"strict" : false
+				},
+				{
+					"name" : "dataOut[6]",
+					"strict" : false
+				},
+				{
+					"name" : "dataOut[7]",
+					"strict" : false
+				},
+				{
+					"name" : "incorrect_addr_flag",
+					"strict" : false
+				},
+				{
+					"name" : "done_flag",
+					"strict" : false
+				},
+				{
+					"name" : "overflow_flag",
+					"strict" : false
+				},
+				{
+					"name" : "clk",
+					"strict" : false
+				},
+				{
+					"name" : "instruction[2]",
+					"strict" : false
+				},
+				{
+					"name" : "instruction[0]",
+					"strict" : false
+				},
+				{
+					"name" : "instruction[1]",
+					"strict" : false
+				},
+				{
+					"name" : "instruction[6]",
+					"strict" : false
+				},
+				{
+					"name" : "instruction[7]",
+					"strict" : false
+				},
+				{
+					"name" : "instruction[8]",
+					"strict" : false
+				},
+				{
+					"name" : "instruction[9]",
+					"strict" : false
+				},
+				{
+					"name" : "instruction[4]",
+					"strict" : false
+				},
+				{
+					"name" : "instruction[5]",
+					"strict" : false
+				},
+				{
+					"name" : "instruction[3]",
+					"strict" : false
+				},
+				{
+					"name" : "instruction[17]",
+					"strict" : false
+				},
+				{
+					"name" : "instruction[12]",
+					"strict" : false
+				},
+				{
+					"name" : "instruction[11]",
+					"strict" : false
+				},
+				{
+					"name" : "instruction[10]",
+					"strict" : false
+				},
+				{
+					"name" : "instruction[16]",
+					"strict" : false
+				},
+				{
+					"name" : "instruction[15]",
+					"strict" : false
+				},
+				{
+					"name" : "instruction[14]",
+					"strict" : false
+				},
+				{
+					"name" : "instruction[13]",
+					"strict" : false
+				},
+				{
+					"name" : "wr",
+					"strict" : false
+				}
+			]
+		}
+	]
+}
