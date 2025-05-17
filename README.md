@@ -1,10 +1,8 @@
 # CoProcessador para o segundo problema do PBL de Sistema Digitais
 
-<div align="center">
 
-    [Barramentos de dados](#barramentos)  -  [ISA do Coprocessador](#conjunto-de-instruções-isa)
+     [Barramentos](#barramentos)
 
-</div>
 
 Este coprocessador foi desenvolvido como complemento para o segundo problema de Sistemas Digitais. Tem como objetivo ser um Co-Processador para a realização de operações utilizando matrizes.
 
