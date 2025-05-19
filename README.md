@@ -1,10 +1,53 @@
 # CoProcessador para o segundo problema do PBL de Sistema Digitais
 
+<div align="center">
+<h1>
 
- [ISA](#conjunto-de-instruções-isa) | [Barramentos](#barramentos) 
-
-
+ [Estrutura implementada](#estrutura-do-coprocessador) | [ISA](#conjunto-de-instruções-isa) | [Barramentos](#barramentos)
+</h1>
+</div>
 Este coprocessador foi desenvolvido como complemento para o segundo problema de Sistemas Digitais. Tem como objetivo ser um Co-Processador para a realização de operações utilizando matrizes.
+<details>
+<summary><h1>Estrutura do CoProcessador</h1></summary>
+
+# Estrutura do CoProcessador
+
+O CoProcessador desenvolvido implementa uma arquitetura simples, sem pipeline ou qualquer forma de paralelismo, assim se faz necessario esperar uma instrução se encerrar para tentar execultar uma nova. A estrutura do CoProcessador é composta por:
+
+- **Registradores**: São as unidades de armazenamento do CoProcessador. São utilizados 3 bancos de registradores, um para a _matriz A_, ou para _matriz B_ e outro para a _matriz C_. Cada banco de registradores conta com _25 registradores_ de _8 bits_ cada, um registrador para cada elemento.
+- **ULA**: Unidade Lógica e Aritmética. É responsável por realizar as operações de soma, subtração, multiplicação por escalar e multiplicação de matrizes, O coprocessador desenvolvido trabalha com numeros inteiros de 8 bits no _complemento A2_, ou seja, o MSB _(bit mais significativo)_ é utilizado para indicar o sinal, além de outras particuliaridades que podem ser vistas [aqui](https://embarcados.com.br/complemento-de-2/). Como utilizamos essa tecnica, os numeros vão de -128 até 127 em notação decimal.
+- **Unidade de controle**: É responsável por gerenciar o fluxo de dados entre os componentes do CoProcessador alem de gerenciar o envio das flags de resultado para o processador _(HPS)_.
+- **Decodificador**: É responsável por decodificar as instruções recebidas do processador _(HPS)_ e enviar os bits para a unidade de controle e para o demultiplexador dos bancos de registradores das matrizes A e B.
+
+> [!NOTE]
+> Como não foi utilizada a memoria RAM para armazenar as matrizes, elas são armazenadas nos bancos de registradores, por isso é necessario enviar elemento a elemento utilizando a instrução [`STORE`](#store)
+
+<div align="center">
+  <figure>
+    <img src="docs/Estrutura_CoProcessador.jpg" width="600px"/>
+    <figcaption>
+      <p align="center">
+        <b>Figura 1</b> - Diagrama de blocos da estrutura do CoProcessador desenvolvido
+      </p>
+    </figcaption>
+  </figure>
+</div>
+
+<details>
+<summary><h2>Tempo de execução das instruções</h2></summary>
+
+## Tempo de execução das instruções
+
+O tempo de execução das instruções é determinado pela complexidade da operação a ser execultada, as instruções aritimeticas que envolvem o uso da ULA e o armazenamento do seu resultado na matriz C são as mais demoradas. Essas instruções necessitam de 9 pulsos de clock para serem concluidas. As instruções de leitura e escrita de dados levam apenas 3 pulsos de clock. As instruções da ula sozinhas levam apenas 6 pulsos de clock, mas como não há pipeline e é necessario armazenar o resultado após a execulção da operação, são necessario mais 3 pulsos de clock para o armazenamento do resultado.
+
+> [!NOTE]
+> Para facilitar a utilização foi inserida uma flag de [done](#barramento-de-flags) que é ativada quando a instrução é concluida, assim basta aguardar o valor dessa flag ser atualizado para 1 para saber que a instrução foi concluida.
+
+</details>
+</details>
+
+<details>
+<summary><h1>Barramentos</h1></summary>
 
 # Barramentos
 
@@ -67,6 +110,10 @@ Flag|Significado
 **Done** | Flag ativada quando uma operação é finalizada.
 
 </details>
+</details>
+
+<details>
+<summary><h1>Conjunto de Instruções (ISA)</h1></summary>
 
 # Conjunto de instruções (ISA)
 
@@ -102,6 +149,10 @@ Descrição detalhada de cada uma das instruções com seus respectivos campos e
 > A unica instrução capaz de retornar um valor pelo [barramento de dados](#barramento-de-saida-outputdata) é a intrução de [LOAD](#load), todas as outras não retornam ou alteram
 > o valor que esta no barramento
 
+> [!WARNING]
+> As Matrizes _A_ e _B_ devem ser armazenadas elemento a elemento, pois se tratam de 25 registradores, um para cada elemento da matriz,
+> sendo assim é necessario realizar 25 vezes o envio da instrução store, cada uma contendo um dos elementos da matriz.
+
 <details>
 <summary><b>NOP instruction</b></summary>
 
@@ -116,6 +167,17 @@ Não usados | | 15 bits| 17| 3
 
 **Flags que podem ser ativadas**
 > Essa instrução não tiva nenhuma flag
+
+<div align="center">
+  <figure>
+    <img src="docs/NopInstruction.png" width="600px"/>
+    <figcaption>
+      <p align="center">
+        <b>Figura 2</b> - Estrutura da instrução NOP
+      </p>
+    </figcaption>
+  </figure>
+</div>
 
 </details>
 
@@ -140,6 +202,16 @@ Não usados| | 9 bits| 17| 9
   - `Incorrect Addr` Endereçamento incorreto
   - `Done` Fim da execução da instrução
 
+<div align="center">
+  <figure>
+    <img src="docs/LoadInstruction.png" width="600px"/>
+    <figcaption>
+      <p align="center">
+        <b>Figura 3</b> - Estrutura da instrução LOAD
+      </p>
+    </figcaption>
+  </figure>
+</div>
 </details>
 
 <details>
@@ -167,6 +239,17 @@ Valor| Valor que vai ser escrito de -128 a 127 ou 0 255 se for sem sinal| 8 bits
   - `Incorrect Addr` Endereçamento incorreto
   - `Done` Fim da execução da instrução
 
+<div align="center">
+  <figure>
+    <img src="docs/StoreInstruction.png" width="600px"/>
+    <figcaption>
+      <p align="center">
+        <b>Figura 4</b> - Estrutura da instrução STORE
+      </p>
+    </figcaption>
+  </figure>
+</div>
+
 </details>
 
 <details>
@@ -184,6 +267,17 @@ Não usados| | 15 bits| 17|3
 - **Flags que podem ser ativadas**
   - `Overflow` o resultado da operação não pode ser devidamente representado em 8 bits utilizando C2 (complemento A2)
   - `Done` Fim da execução da instrução
+
+<div align="center">
+  <figure>
+    <img src="docs/AddInstruction.png" width="600px"/>
+    <figcaption>
+      <p align="center">
+        <b>Figura 5</b> - Estrutura da instrução ADD
+      </p>
+    </figcaption>
+  </figure>
+</div>
 
 </details>
 
@@ -203,6 +297,17 @@ Não usados| | 15 bits | 17 | 3
   - `Overflow` o resultado da operação não pode ser devidamente representado em 8 bits utilizando C2 (complemento A2)
   - `Done` Fim da execução da instrução
   
+<div align="center">
+  <figure>
+    <img src="docs/SubInstruction.png" width="600px"/>
+    <figcaption>
+      <p align="center">
+        <b>Figura 6</b> - Estrutura da instrução SUB
+      </p>
+    </figcaption>
+  </figure>
+</div>
+
 </details>
 
 <details>
@@ -222,6 +327,17 @@ Não usados| | 7 bits | 17 | 11
   - `Overflow` o resultado da operação não pode ser devidamente representado em 8 bits utilizando C2 (complemento A2)
   - `Done` Fim da execução da instrução
 
+<div align="center">
+  <figure>
+    <img src="docs/MulEInstruction.png" width="600px"/>
+    <figcaption>
+      <p align="center">
+        <b>Figura 7</b> - Estrutura da instrução MULE
+      </p>
+    </figcaption>
+  </figure>
+</div>
+
 </details>
 
 <details>
@@ -240,6 +356,17 @@ Não usado| | 15 bits | 17 | 3
   - `Overflow` o resultado da operação não pode ser devidamente representado em 8 bits utilizando C2 (complemento A2)
   - `Done` Fim da execução da instrução
 
+<div align="center">
+  <figure>
+    <img src="docs/MulMInstruction.png" width="600px"/>
+    <figcaption>
+      <p align="center">
+        <b>Figura 8</b> - Estrutura da instrução MULM
+      </p>
+    </figcaption>
+  </figure>
+</div>
+
 </details>
 
 <details>
@@ -256,6 +383,17 @@ Não usado| | 15 bits | 17 | 3
 
 **Flags que podem ser ativadas**
 > Essa instrução não tiva nenhuma flag
+
+<div align="center">
+  <figure>
+    <img src="docs/ResetInstruction.png" width="600px"/>
+    <figcaption>
+      <p align="center">
+        <b>Figura 9</b> - Estrutura da instrução RST
+      </p>
+    </figcaption>
+  </figure>
+</div>
 
 </details>
 
