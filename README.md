@@ -119,6 +119,9 @@ Flag|Significado
 
 O coprocessador conta com um conjunto de 8 instruções que podem ser utilizadas para realizar operações aritmeticas, de armazenamento e de leitura de dados.
 
+> [!WARNING]
+> Uma instrução não é uma função, umas instrução é uma sequencia de bits que dizem ao coprocessador o que fazer, não possui um "retorno" como a chamada de uma função. O que acontece é que ao fim da execução de uma instrução, o coprocessador podera colocar um valor no [barramento de saida](#barramento-de-saida-outputdata) e/ou atualizar os valores das [flags](#barramento-de-flags), mas não são todas as intruções que possuem uma escrita no barramento de saida ou no barramento de flags.
+
 > [!NOTE]
 > Nem todas as operações utilizão todos os 18 bits disponiveis, observar os campos de cada instrução
 > para evitar perda de dados ou problemas de funcionamento.
